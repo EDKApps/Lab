@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ cliente }}</h1>
+
+<p>Nombre: {{ cliente.contacto_nombre }}</p>
+<a href="{% url "presupuestos:cliente_listar"  %}">Clientes</a>
+{% endblock content %}

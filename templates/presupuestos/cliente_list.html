@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Clientes</h1>
+<ul>
+    {% for cliente in cliente_list %}
+    <li>{{ cliente.contacto_nombre }}  :  
+    <a href="{% url "presupuestos:cliente_modificar" cliente.id %}">modificar {{ cliente.contacto_apellido }}</a>
+    <a href="{% url "presupuestos:cliente_borrar" cliente.id %}">borrar</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url "presupuestos:cliente_crear"  %}">Nuevo</a>
+{% endblock content %}

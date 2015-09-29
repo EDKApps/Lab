@@ -53,10 +53,11 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'Lab3.urls'
 
+TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates') #agregado basado en rango
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_PATH,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
