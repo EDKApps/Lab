@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Presupuestos</h1>
+<ul>
+    {% for presupuesto in presupuesto_list %}
+    <li>{{ presupuesto.contacto_nombre }}  :  
+    <a href="{% url "presupuestos:presupuesto_modificar" presupuesto.id %}">modificar {{ presupuesto.contacto_apellido }}</a>
+    <a href="{% url "presupuestos:presupuesto_borrar" presupuesto.id %}">borrar</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url "presupuestos:presupuesto_crear"  %}">Nuevo</a>
+{% endblock content %}
