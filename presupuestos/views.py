@@ -35,3 +35,5 @@ class ClienteBorrar(DeleteView):
     model = Cliente
     success_url = reverse_lazy('presupuestos:cliente_listar')
     fields = cliente_fields
+	
+	
