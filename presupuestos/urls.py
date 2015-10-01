@@ -1,6 +1,7 @@
+ # -- coding: utf-8 --
 from django.conf.urls import patterns, include, url
-from .views import ClienteCrear, ClienteBorrar, ClienteDetalle, ClienteListar, ClienteModificar
-from .views import PresupuestoCrear, PresupuestoBorrar, PresupuestoDetalle, PresupuestoListar, PresupuestoModificar
+from .viewcliente import ClienteCrear, ClienteBorrar, ClienteDetalle, ClienteListar, ClienteModificar
+from .viewpresupuesto import PresupuestoCrear, PresupuestoBorrar, PresupuestoDetalle, PresupuestoListar, PresupuestoModificar
 
 urlpatterns = patterns('',
     url(r'^clientes/$', ClienteListar.as_view(), name='cliente_listar'),

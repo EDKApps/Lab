@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>{{ presupuesto}}</h1>
+<h1>{{ presupuesto.referencia}}</h1>
 
 <p>Nombre: {{ presupuesto.referencia }}</p>
 <a href="{% url "presupuestos:presupuesto_listar"  %}">Presupuestos</a>
