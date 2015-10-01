@@ -18,8 +18,8 @@ class Presupuesto (models.Model):
 	cliente = models.ForeignKey(Cliente)
 	referencia = models.CharField(max_length=100, blank='true')
 	tipo = models.CharField(max_length=100)
-	fecha_de_solicitud = models.DateTimeField(max_length=10)
-	fecha_de_aprobacion = models.DateTimeField(max_length=10)
+	fecha_de_solicitud = models.DateTimeField('fecha de solicitud')
+	fecha_de_aprobacion = models.DateTimeField('fecha de aprobacion')
 	#fecha_de_solicitud = models.DateTimeField('')
 	#fecha_de_aprobacion = models.DateTimeField('')
 	descripcion = models.CharField(max_length=100)
@@ -28,5 +28,5 @@ class Presupuesto (models.Model):
 	"""def __str__(self):
 		return self.fecha_de_solicitud"""
 	def __str__(self):
-		return self.cliente
+		return self.referencia
 
