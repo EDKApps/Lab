@@ -2,8 +2,11 @@
 {% block content %}
 <h1>Presupuestos</h1>
 <ul>
+	<li><b>Referencia, Descripcion, Cliente</b></li>
     {% for presupuesto in presupuesto_list %}
-    <li>{{ presupuesto.contacto_nombre }}  :  
+    <li>{{ presupuesto.referencia}}- 
+    {{presupuesto.descripcion}}-
+    {{presupuesto.cliente}}-  :  
     <a href="{% url "presupuestos:presupuesto_modificar" presupuesto.id %}">modificar {{ presupuesto.contacto_apellido }}</a>
     <a href="{% url "presupuestos:presupuesto_borrar" presupuesto.id %}">borrar</a>
     </li>
