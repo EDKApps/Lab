@@ -1,13 +1,29 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
     <head>
         <title>Laboratorio Industrial</title>
-    	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">		
-		
+  		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">		
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>	
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>          
+		<link href='https://fonts.googleapis.com/css?family=Dosis:500&effect=outline' rel='stylesheet' type='text/css'>		        
+        
+        
+		<link rel="stylesheet" href="{% static "css/presupuestos.css" %}">
     </head>
 
-    <body>
+    <body> 
+        <a href="{% url "presupuestos:lab_inicio"  %}">
+            <img src= "{% static "images/logo_clarity.jpg"%}" alt="Logotipo de Clarity">
+        </a>
     {% block content %}{% endblock content %}
+	<script>
+	$(document).ready(function(){
+		$('[data-toggle="tooltip"]').tooltip();   
+	});
+	</script>		
     </body>
 </html>

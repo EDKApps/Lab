@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="container">
+  <ul class="list-unstyled">
+    <li class="col-md-3 odd"><a href="{% url "presupuestos:cliente_listar"  %}"><img src= "{% static "images/opcion_clientes.png"%}" data-toggle="tooltip" data-placement="right" title="Administrar clientes" alt="Administrar clientes"></a></li>
+    <li class="col-md-3 odd"><a href="{% url "presupuestos:presupuesto_listar"  %}"><img src= "{% static "images/opcion_presupuestos.png"%}" data-toggle="tooltip" data-placement="right" title="Administrar presupuestos" alt="Administrar presupuestos"></a></li>
+  </ul>
+</div>
+
+{% endblock content %}

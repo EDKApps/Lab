@@ -1,14 +1,30 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block content %}
-<h1>Clientes</h1>
-<ul>
+<div class="container">
+	<h2>Clientes</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+		<th></th>
+		<th></th>		  
+        <th>Apellido</th>
+        <th>Nombre</th>
+        <th>Empresa</th>
+      </tr>
+    </thead>
+    <tbody>	 	
     {% for cliente in cliente_list %}
-    <li>{{ cliente.contacto_nombre }}  :  
-    <a href="{% url "presupuestos:cliente_modificar" cliente.id %}">modificar {{ cliente.contacto_apellido }}</a>
-    <a href="{% url "presupuestos:cliente_borrar" cliente.id %}">borrar</a>
-    </li>
+	<tr>
+    	<td><a href="{% url "presupuestos:cliente_modificar" cliente.id %}" ><img src= "{% static "images/accion_modificar.png"%}" data-toggle="tooltip" data-placement="top" title="Modificar" alt= "Modificar"></a></td>
+    	<td><a href="{% url "presupuestos:cliente_borrar" cliente.id %}"><img src= "{% static "images/accion_borrar.png"%}" data-toggle="tooltip" data-placement="top" title="Borrar" alt= "Borrar"></a></td>
+		<td>{{ cliente.contacto_apellido }}</td>
+    	<td>{{ cliente.contacto_nombre }}  </td>
+		<td>{{ cliente.empresa }}</td>
+	</tr>
     {% endfor %}
-</ul>
-
-<a href="{% url "presupuestos:cliente_crear"  %}">Nuevo</a>
+    </tbody>
+  </table>
+</div>	
+<a href="{% url "presupuestos:cliente_crear"  %}"><img src= "{% static "images/accion_alta.png"%}" data-toggle="tooltip" data-placement="top" title="Agregar" alt="Agregar"></a>
 {% endblock content %}

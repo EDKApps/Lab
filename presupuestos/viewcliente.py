@@ -1,4 +1,7 @@
  # -- coding: utf-8 --
+from django.shortcuts import render
+from django.http import HttpResponse
+
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 cliente_fields = ('empresa','contacto_nombre','contacto_apellido',
@@ -7,6 +10,9 @@ cliente_fields = ('empresa','contacto_nombre','contacto_apellido',
 
 from .models import Cliente
 
+def labinicio(request):
+    context_dict = {}
+    return render(request, 'presupuestos/index.html', context_dict) 
 
 class ClienteListar(ListView):
     model = Cliente
