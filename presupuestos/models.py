@@ -1,4 +1,11 @@
  # -- coding: utf-8 --
+	
+# $ python manage.py makemigrations
+# $ python manage.py migrate
+# $ python manage.py createsuperuser
+# $ python manage.py sqlmigrate rango 0001
+# $ python manage.py runserver
+
 from django.db import models
 
 class Cliente (models.Model):
@@ -18,8 +25,8 @@ class Presupuesto (models.Model):
 	cliente = models.ForeignKey(Cliente)
 	referencia = models.CharField(max_length=100, blank='true')
 	tipo = models.CharField(max_length=100)
-	fecha_de_solicitud = models.DateTimeField('fecha de solicitud')
-	fecha_de_aprobacion = models.DateTimeField('fecha de aprobacion')
+	fecha_de_solicitud = models.DateField('fecha de solicitud')
+	fecha_de_aprobacion = models.DateField('fecha de aprobacion')
 	#fecha_de_solicitud = models.DateTimeField('')
 	#fecha_de_aprobacion = models.DateTimeField('')
 	descripcion = models.CharField(max_length=100)

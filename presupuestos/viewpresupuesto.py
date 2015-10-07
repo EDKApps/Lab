@@ -20,9 +20,9 @@ class PresupuestoListar(ListView):
 
 class PresupuestoForm(forms.ModelForm):
     #cliente lo uso por defecto
-    #referencia = forms.CharField(max_length=128, help_text="Por favor ingrese el nombre de la categoría")
-    fecha_de_solicitud = forms.DateField(widget=SelectDateWidget(empty_label="Nothing"))
-    fecha_de_aprobacion = forms.DateField(widget=SelectDateWidget(empty_label="Nothing"))
+    #fecha_de_solicitud = forms.DateField(widget=SelectDateWidget(empty_label="Nothing"))
+    fecha_de_solicitud = forms.DateInput(attrs={'class':'datepicker'})
+    fecha_de_aprobacion = forms.DateInput(attrs={'class':'datepicker'})
 	#Una clase inline para proveer información adicional en el formulario
     class Meta:
         #Provee una asociación entre el ModelForm y un model
