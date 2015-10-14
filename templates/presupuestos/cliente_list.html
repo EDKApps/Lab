@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "menu.html" %}
 {% load staticfiles %}
 {% block content %}
 <div class="container">
@@ -11,6 +11,8 @@
         <th>Apellido</th>
         <th>Nombre</th>
         <th>Empresa</th>
+        <th>Fijo</th>
+        <th>Celular</th>
       </tr>
     </thead>
     <tbody>	 	
@@ -21,10 +23,27 @@
 		<td>{{ cliente.contacto_apellido }}</td>
     	<td>{{ cliente.contacto_nombre }}  </td>
 		<td>{{ cliente.empresa }}</td>
+		<td>{{ cliente.telefono_fijo }}</td>
+		<td>{{ cliente.telefono_movil }}</td>
 	</tr>
     {% endfor %}
     </tbody>
   </table>
+  {% if is_paginated %}
+      <div class="pagination">
+          <span class="page-links">
+              {% if page_obj.has_previous %}
+                  <a href="/presupuestos/clientes?page={{ page_obj.previous_page_number }}">anterior</a>
+              {% endif %}
+              <span class="page-current">
+                  Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+              </span>
+              {% if page_obj.has_next %}
+                  <a href="/presupuestos/clientes?page={{ page_obj.next_page_number }}">siguiente</a>
+              {% endif %}
+          </span>
+      </div>
+  {% endif %}	
 </div>	
 <a href="{% url "presupuestos:cliente_crear"  %}"><img src= "{% static "images/accion_alta.png"%}" data-toggle="tooltip" data-placement="top" title="Agregar" alt="Agregar"></a>
 {% endblock content %}

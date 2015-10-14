@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Laboratorio Industrial</title>
+  		<!--<meta charset="utf-8">-->
+  		<meta name="viewport" content="width=device-width, initial-scale=1">		
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>	
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>          
+		<link href='https://fonts.googleapis.com/css?family=Dosis:500&effect=outline' rel='stylesheet' type='text/css'>		        
+
+		<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+		<script src="{% static 'js/locales/bootstrap-datepicker.es.js'%}" charset="UTF-8"></script>
+		
+        <link rel="stylesheet" href="{% static 'css/datepicker.css' %}">        
+        
+		<link rel="stylesheet" href="{% static "css/presupuestos.css" %}">
+    </head>
+
+    <body> 
+	<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+	<div class="row">
+	    <!--logo -->
+	    <a href="{% url "presupuestos:lab_inicio"  %}"><img src= "{% static "images/logo_clarity.jpg"%}" alt="Logotipo de Clarity"></a>
+	</div>		
+	<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div class="row">
+  <div class="col-xs-2 col-md-2">
+  <ul class="nav nav-pills nav-stacked">
+	<li class="active"><a href="{% url "presupuestos:lab_inicio"  %}">Inicio</a></li>
+	<li><a href="{% url "presupuestos:cliente_listar"  %}">Clientes</a></li>
+	<li><a href="{% url "presupuestos:presupuesto_listar"  %}">Presupuestos</a></li>
+	<li><a href="{% url "presupuestos:ordendetrabajo_listar"  %}">Órdenes de trabajo</a></li>
+	<li><a href="{% url "presupuestos:muestra_listar"  %}">Muestras</a></li>
+	<li class="dropdown">
+	  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Configuración <span class="caret"></span></a>
+	  <ul class="dropdown-menu">
+		<li><a href="#">Tipos de presupuesto</a></li>
+		<li><a href="#">Estados de presupuestos</a></li>                      
+	  </ul>
+	</li>      
+  </ul>
+  </div>
+  <div class="col-xs-10 col-md-10">
+    {% block content %}{% endblock content %}	  
+  </div>
+</div>	
+
+	<script>
+	$(document).ready(function(){
+		$('[data-toggle="tooltip"]').tooltip();   
+	});
+	</script>		
+    </body>
+</html>

@@ -4,6 +4,11 @@ from django.http import HttpResponse
 
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
+
+def OrdenDeTrabajoListar(request): #pasar a clase genérica
+    context_dict = {}
+    return render(request, 'presupuestos/ordendetrabajo_list.html', context_dict)
+"""
 cliente_fields = ('empresa','contacto_nombre','contacto_apellido',
 			 'domicilio','telefono_fijo','telefono_movil',
 			 'email','cuit','nota')
@@ -41,3 +46,4 @@ class ClienteBorrar(DeleteView):
     model = Cliente
     success_url = reverse_lazy('presupuestos:cliente_listar')
     fields = cliente_fields
+"""

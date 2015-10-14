@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "menu.html" %}
 {% load staticfiles %}
 {% block content %}
 <div class="container">
@@ -27,6 +27,21 @@
     {% endfor %}
     </tbody>
   </table>
+  {% if is_paginated %}
+      <div class="pagination">
+          <span class="page-links">
+              {% if page_obj.has_previous %}
+                  <a href="/presupuestos/presupuestos?page={{ page_obj.previous_page_number }}">anterior</a>
+              {% endif %}
+              <span class="page-current">
+                  Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+              </span>
+              {% if page_obj.has_next %}
+                  <a href="/presupuestos/presupuestos?page={{ page_obj.next_page_number }}">siguiente</a>
+              {% endif %}
+          </span>
+      </div>
+  {% endif %}		
 </div>	
 
 <a href="{% url "presupuestos:presupuesto_crear"  %}"><img src= "{% static "images/accion_alta.png"%}" data-toggle="tooltip" data-placement="top" title="Agregar" alt="Agregar"></a>

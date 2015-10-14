@@ -2,7 +2,8 @@
 from django.conf.urls import patterns, include, url
 from .viewcliente import labinicio, ClienteCrear, ClienteBorrar, ClienteDetalle, ClienteListar, ClienteModificar
 from .viewpresupuesto import PresupuestoCrear, PresupuestoBorrar, PresupuestoDetalle, PresupuestoListar, PresupuestoModificar
-
+from .viewmuestra import MuestraListar
+from .viewordendetrabajo import OrdenDeTrabajoListar
 urlpatterns = patterns('',
              
     #Base
@@ -20,4 +21,11 @@ urlpatterns = patterns('',
     url(r'^presupuestos/(?P<pk>\d+)/$', PresupuestoDetalle.as_view(), name='presupuesto_detalle'),
     url(r'^presupuestos/(?P<pk>\d+)/modificar/$', PresupuestoModificar.as_view(), name='presupuesto_modificar'),
     url(r'^presupuestos/(?P<pk>\d+)/borrar/$', PresupuestoBorrar.as_view(), name='presupuesto_borrar'),
+					   
+    #Ordenes de trabajo
+    url(r'^ordenesdetrabajo/$', OrdenDeTrabajoListar, name='ordendetrabajo_listar'), #pasar a .as_view()
+                       
+    #Muestras
+    url(r'^muestras/$', MuestraListar, name='muestra_listar'), #pasar a .as_view() 
+    
 )
