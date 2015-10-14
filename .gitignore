@@ -9,5 +9,5 @@ db.sqlite3
 #excluyo todos los pyc y otros
 __pycache__/
 *.py[cod]
-
+presupuestos/migrations/
 
