@@ -2,6 +2,15 @@
 {% block content %}
 <h1>{{ presupuesto.referencia}}</h1>
 
-<p>Nombre: {{ presupuesto.referencia }}</p>
+<p>Cliente: {{presupuesto.cliente}}</p>
+<p>Referencia clave: {{presupuesto.referencia_clave}}</p>
+<p>Refrencia: {{presupuesto.refrencia}}</p>
+<p>Tipo: {{presupuesto.tipo}}</p>
+<p>Fecha de solicitud: {{presupuesto.fecha_de_solicitud}}</p>
+<p>Fecha de aprobacion: {{presupuesto.fecha_de_aprobacion}}</p>
+<p>Fecha de vencimiento: {{presupuesto.fecha_de_vencimiento}}</p>
+<p>Descripcion: {{presupuesto.descripcion}}</p>
+<p>Estado: {{presupuesto.estado}}</p>
+<p>Observacion: {{presupuesto.observacion}}</p>
 <a href="{% url "presupuestos:presupuesto_listar"  %}">Presupuestos</a>
 {% endblock content %}

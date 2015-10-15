@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='presupuesto',
             name='fecha_de_vencimiento',
-            field=models.CharField(max_length=100),
+            field=models.CharField(default=' ', max_length=100),
             preserve_default=False,
         ),
     ]
