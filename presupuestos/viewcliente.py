@@ -21,8 +21,12 @@ class ClienteListar(ListView):
 
 class ClienteCrear(CreateView):
     model = Cliente
-    success_url = reverse_lazy('presupuestos:cliente_listar')
     fields = cliente_fields
+	
+    def get_success_url(self):
+        return reverse('presupuestos:cliente_detalle', kwargs={
+            'pk': self.object.pk,
+        })
 
 class ClienteDetalle(DetailView):
     model = Cliente

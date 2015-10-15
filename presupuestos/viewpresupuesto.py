@@ -34,9 +34,13 @@ class PresupuestoFormModificar(forms.ModelForm):
 		
 class PresupuestoCrear(CreateView):
     model = Presupuesto
-    success_url = reverse_lazy('presupuestos:presupuesto_listar')
     form_class = PresupuestoFormCrear
 
+    def get_success_url(self):
+        return reverse('presupuestos:presupuesto_detalle', kwargs={
+            'pk': self.object.pk,
+        })
+	
 class PresupuestoDetalle(DetailView):
     model = Presupuesto
     fields = presupuesto_fields_modif
