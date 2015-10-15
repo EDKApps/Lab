@@ -36,7 +36,7 @@ class Estado (models.Model):
 
 class Presupuesto (models.Model):
 	cliente = models.ForeignKey(Cliente)
-	referencia_clave = models.CharField(max_length=100, blank='true')#texto, por ejemplo 'S-P'
+	referencia_clave = models.CharField(max_length=100, blank='true',default='S-P')
 	referencia = models.CharField(max_length=20,blank='true') #autoincremental
 	fecha_de_solicitud = models.DateField('fecha de solicitud')
 	fecha_de_aprobacion = models.DateField('fecha de aprobacion')
@@ -53,8 +53,7 @@ class Presupuesto (models.Model):
 	def save(self, *args, **kwargs):
 		#si es insert (id= 0), asignar referencia autoincremental	
 		if self.id is None:
-			#print ('>>>' + str(self.id))
-			self.referencia = "SSPP " + str(sigNumero('presupuesto_referencia'))
+			self.referencia = str(sigNumero('presupuesto_referencia'))
 			
 		super(Presupuesto, self).save(*args, **kwargs) # Call the "real" save() method.
 
