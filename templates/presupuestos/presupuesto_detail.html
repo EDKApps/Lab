@@ -2,7 +2,8 @@
 {% block content %}
 <h1>Referencia: {{ presupuesto.referencia}}</h1>
 
-<p>Cliente: {{presupuesto.cliente}}</p>
+<p>Cliente: {{presupuesto.cliente.empresa}}</p>
+<p>Contacto: {{presupuesto.cliente}}</p>
 <p>Referencia clave: {{presupuesto.referencia_clave}}</p>
 <p>Referencia: {{presupuesto.referencia}}</p>
 <p>Tipo: {{presupuesto.tipo}}</p>

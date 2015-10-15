@@ -11,9 +11,9 @@
 		<th></th>		  
 		<th>Referencia clave</th>
 		<th>Referencia</th>
-        <th>Cliente</th>
+		<th>Cliente</th>
+        <th>Contacto</th>
         <th>Estado</th>
-        <th>Cliente</th>
 		<th>Solicitud</th>
 		<th>Aprobación</th>
 		<th>Vencimiento</th>
@@ -26,6 +26,7 @@
 		<td><a href="{% url "presupuestos:presupuesto_borrar" presupuesto.id %}"><img src= "{% static "images/accion_borrar.png"%}" data-toggle="tooltip" data-placement="top" title="Borrar" alt= "Borrar"></a></td>		  
         <td>{{presupuesto.referencia_clave}}</td>
 		<td>{{presupuesto.referencia}}</td>
+		<td>{{presupuesto.cliente.empresa}}</td>		  
         <td>{{presupuesto.cliente}}</td>
 		<td>{{presupuesto.estado}}</td>
 		<td>{{presupuesto.fecha_de_solicitud}}</td>
