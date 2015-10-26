@@ -4,6 +4,11 @@
 <div class="container">
 	<!--<h2><div class="font-effect-outline">Presupuestos</div></h2>-->
 	<h2>Presupuestos</h2>
+		<form method="get" action="/presupuestos/presupuestos/">
+		<p><label for="id_q">Filtro (referencia clave, referencia o cliente):</label>
+		<input type="text" name="q" id="id_q" value="{{ query }}" />
+		<input type="submit" value="Buscar" /></p>
+		</form>		
   <table class="table table-hover">
     <thead>
       <tr>
@@ -41,13 +46,13 @@
       <div class="pagination">
           <span class="page-links">
               {% if page_obj.has_previous %}
-                  <a href="/presupuestos/presupuestos?page={{ page_obj.previous_page_number }}">anterior</a>
+                  <a href="/presupuestos/presupuestos?q={{query}}&page={{ page_obj.previous_page_number }}">anterior</a>
               {% endif %}
               <span class="page-current">
                   Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
               </span>
               {% if page_obj.has_next %}
-                  <a href="/presupuestos/presupuestos?page={{ page_obj.next_page_number }}">siguiente</a>
+                  <a href="/presupuestos/presupuestos?q={{query}}&page={{ page_obj.next_page_number }}">siguiente</a>
               {% endif %}
           </span>
       </div>
