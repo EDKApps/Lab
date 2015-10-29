@@ -3,9 +3,31 @@ from .models import Cliente
 from .models import Presupuesto, Numerador
 from .models import Tipo
 from .models import Estado
+from .models import Matriz
+from .models import Grupo_Parametro
+from .models import Familia
+from .models import Parametro
+from .models import Tecnica
+from .models import Unidades
+from .models import MatrizTecnicaLct
+from .models import ParametroPrecio 
+from .models import GrupoParametroPrecio
+from .models import GrupoParametroPrecio_Parametro
 
 admin.site.register(Cliente)
 admin.site.register(Presupuesto)
 admin.site.register(Numerador)
 admin.site.register(Estado)
 admin.site.register(Tipo)
+admin.site.register(Matriz)
+admin.site.register(Grupo_Parametro)
+admin.site.register(Familia)
+admin.site.register(Parametro)
+admin.site.register(Tecnica)
+admin.site.register(Unidades)
+admin.site.register(MatrizTecnicaLct)
+admin.site.register(ParametroPrecio)
+admin.site.register(GrupoParametroPrecio)
+admin.site.register(GrupoParametroPrecio_Parametro)
+
+

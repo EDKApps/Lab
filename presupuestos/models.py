@@ -80,3 +80,94 @@ def sigNumero(nombreNumerador):
 #numerador, created = Numerador.objects.update_or_create(
 #        identifier=identifier, defaults={"name": name}
 #)
+
+
+class Matriz (models.Model):
+	nombre_matriz = models.CharField(max_length=100)
+	def __str__(self):
+		return self.nombre_matriz
+	
+class Familia (models.Model):
+	nombre_familia= models.CharField(max_length=100)
+	def __str__(self):
+		return self.nombre_familia
+	
+class Parametro (models.Model):
+	nombre_par = models.CharField(max_length=100)
+	familia = models.ForeignKey(Familia)
+	def __str__(self):
+		return self.nombre_par
+	
+class Tecnica (models.Model):
+	nombre_tec = models.CharField(max_length=100)
+	derivacion= models.CharField(max_length=100)
+	link = models.CharField(max_length=100)
+	observacion = models.CharField(max_length=100)
+	def __str__(self):
+		return self.nombre_tec
+	
+class Unidades (models.Model):
+	nombre_unidad = models.CharField(max_length=100)
+	def __str__(self):
+		return self.nombre_unidad
+
+class MatrizTecnicaLct (models.Model):
+	matriz = models.ForeignKey(Matriz)
+	parametro = models.ForeignKey(Parametro)
+	tecnica = models.ForeignKey(Tecnica)
+	lct = models.DecimalField(max_digits=10, decimal_places=6)
+	unidad = models.ForeignKey(Unidades)
+	#todo:agregar str
+
+class ParametroPrecio  (models.Model):
+	matriz = models.ForeignKey(Matriz)
+	parametro = models.ForeignKey(Parametro)
+	tecnica = models.ForeignKey(Tecnica)
+	precio_del_parametro = models.DecimalField(max_digits=8, decimal_places=2)
+	fecha_de_precio = models.DateField('Fecha del precio')
+	
+	#def familia(self): todo: (Inferido) a partir del parametro retornar su familia
+		
+	def lcm(self):
+		try:
+			mt = MatrizTecnicaLct.objects.get(matriz=self.matriz, parametro=self.parametro, tecnica=self.tecnica)
+		except MatrizTecnicaLct.DoesNotExist:
+			return 0
+		else:
+			return mt.lct
+	def uni(self):
+		try:
+			mt = MatrizTecnicaLct.objects.get(matriz=self.matriz, parametro=self.parametro, tecnica=self.tecnica)
+		except MatrizTecnicaLct.DoesNotExist:
+			return ''
+		else:
+			return mt.unidad
+
+class Grupo_Parametro (models.Model):
+	nombre_gparametro = models.CharField(max_length=100)
+	def __str__(self):
+		return self.nombre_gparametro
+	
+class GrupoParametroPrecio (models.Model):
+	
+	matriz = models.ForeignKey(Matriz)
+	grupo_parametro  = models.ForeignKey(Grupo_Parametro)
+	tecnica = models.ForeignKey(Tecnica)
+	precio_del_grupo = models.DecimalField(max_digits=8, decimal_places=2)
+	fecha_de_precio = models.DateField('Fecha del precio')
+	
+class GrupoParametroPrecio_Parametro (models.Model):
+	grupoparametroprecio = models.ForeignKey(GrupoParametroPrecio)
+	parametro = models.ForeignKey(Parametro)
+	#todo:agregar inferida de unidades y lct, que vienen de matriztecnicalct
+	
+"""class ParametroPrecio  (models.Model)
+	matriz = models.ForeignKey(Matriz)
+	grupo_parametro = models.ForeignKey(Grupo_Parametro)
+	tecnica = models.ForeignKey(Tecnica)
+	parametro = models.ForeignKey(Parametros)
+	precio_del_parametro = models.DecimalField(max_digits=8, decimal_places=2)
+	fecha_de_precio = models.DateField('')
+	#lcm = models.DecimalField(lct)
+	#unidades = models.MatrizTecnicaLct(unidad)
+"""

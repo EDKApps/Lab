@@ -4,6 +4,7 @@ from .viewcliente import labinicio, ClienteCrear, ClienteBorrar, ClienteDetalle,
 from .viewpresupuesto import PresupuestoCrear, PresupuestoBorrar, PresupuestoDetalle, PresupuestoListar, PresupuestoModificar
 from .viewmuestra import MuestraListar
 from .viewordendetrabajo import OrdenDeTrabajoListar
+from .viewmatriz import MatrizCrear, MatrizBorrar, MatrizDetalle, MatrizListar, MatrizModificar
 urlpatterns = patterns('',
              
     #Base
@@ -27,5 +28,12 @@ urlpatterns = patterns('',
                        
     #Muestras
     url(r'^muestras/$', MuestraListar, name='muestra_listar'), #pasar a .as_view() 
+					 
+	#Clientes
+    url(r'^matriz/$', MatrizListar.as_view(), name='matriz_listar'),
+    url(r'^matriz/crear/$', MatrizCrear.as_view(), name='matriz_crear'),
+    url(r'^matriz/(?P<pk>\d+)/$', MatrizDetalle.as_view(), name='matriz_detalle'),
+    url(r'^matriz/(?P<pk>\d+)/modificar/$', MatrizModificar.as_view(), name='matriz_modificar'),
+    url(r'^matriz/(?P<pk>\d+)/borrar/$', MatrizBorrar.as_view(), name='matriz_borrar'),
     
 )

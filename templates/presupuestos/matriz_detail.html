@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ matriz}}</h1>
+
+<p>Matriz: {{ matriz.nombre_matriz }}</p>
+<a href="{% url "presupuestos:matriz_listar"  %}">Matrices</a>
+{% endblock content %}
