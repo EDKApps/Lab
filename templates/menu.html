@@ -38,7 +38,11 @@
 	  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Configuración <span class="caret"></span></a>
 	  <ul class="dropdown-menu">
 		<li><a href="{% url "presupuestos:matriz_listar"  %}">Matriz</a></li>
-		<li><a href="#">Estados de presupuestos</a></li>                      
+		<li><a href="{% url "presupuestos:familia_listar"  %}">Familia</a></li>
+		<li><a href="{% url "presupuestos:parametro_listar"  %}">Parametro</a></li>
+		<li><a href="{% url "presupuestos:tecnica_listar"  %}">Tecnica</a></li>
+		<li><a href="{% url "presupuestos:unidades_listar"  %}">Unidades</a></li>		
+		<li><a href="{% url "presupuestos:matriztecnicalct_listar"  %}">Matriz Tecnica LCT</a></li>		
 	  </ul>
 	</li>      
   </ul>
