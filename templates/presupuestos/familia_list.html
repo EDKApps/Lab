@@ -2,8 +2,8 @@
 {% load staticfiles %}
 {% block content %}
 <div class="container">
-	<h2>Matriz</h2>
-		<form method="get" action="/presupuestos/matriz/">
+	<h2>Familia</h2>
+		<form method="get" action="/presupuestos/familia/">
 		<p><label for="id_q">Filtro:</label>
 		<input type="text" name="q" id="id_q" value="{{ query }}" />
 		<input type="submit" value="Buscar" /></p>
@@ -13,15 +13,15 @@
       <tr>
 		<th></th>
 		<th></th>		  
-        <th>Matriz</th>
+        <th>Familia</th>
       </tr>
     </thead>
     <tbody>	 	
-    {% for matriz in matriz_list %}
+    {% for familia in familia_list %}
 	<tr>
-    	<td><a href="{% url "presupuestos:matriz_modificar" matriz.id %}" ><img src= "{% static "images/accion_modificar.png"%}" data-toggle="tooltip" data-placement="top" title="Modificar" alt= "Modificar"></a></td>
-    	<td><a href="{% url "presupuestos:matriz_borrar" matriz.id %}"><img src= "{% static "images/accion_borrar.png"%}" data-toggle="tooltip" data-placement="top" title="Borrar" alt= "Borrar"></a></td>
-		<td>{{ matriz.nombre_matriz }}</td>
+    	<td><a href="{% url "presupuestos:familia_modificar" familia.id %}" ><img src= "{% static "images/accion_modificar.png"%}" data-toggle="tooltip" data-placement="top" title="Modificar" alt= "Modificar"></a></td>
+    	<td><a href="{% url "presupuestos:familia_borrar" familia.id %}"><img src= "{% static "images/accion_borrar.png"%}" data-toggle="tooltip" data-placement="top" title="Borrar" alt= "Borrar"></a></td>
+		<td>{{ familia.nombre_familia }}</td>
 	</tr>
     {% endfor %}
     </tbody>
@@ -30,17 +30,17 @@
       <div class="pagination">
           <span class="page-links">
               {% if page_obj.has_previous %}
-                  <a href="/presupuestos/matriz?q={{query}}&page={{ page_obj.previous_page_number }}">anterior</a>
+                  <a href="/presupuestos/familia?q={{query}}&page={{ page_obj.previous_page_number }}">anterior</a>
               {% endif %}
               <span class="page-current">
                   Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
               </span>
               {% if page_obj.has_next %}
-                  <a href="/presupuestos/matriz?q={{query}}&page={{ page_obj.next_page_number }}">siguiente</a>
+                  <a href="/presupuestos/familia?q={{query}}&page={{ page_obj.next_page_number }}">siguiente</a>
               {% endif %}
           </span>
       </div>
   {% endif %}	
 </div>	
-<a href="{% url "presupuestos:matriz_crear"  %}"><img src= "{% static "images/accion_alta.png"%}" data-toggle="tooltip" data-placement="top" title="Agregar" alt="Agregar"></a>
+<a href="{% url "presupuestos:familia_crear"  %}"><img src= "{% static "images/accion_alta.png"%}" data-toggle="tooltip" data-placement="top" title="Agregar" alt="Agregar"></a>
 {% endblock content %}
