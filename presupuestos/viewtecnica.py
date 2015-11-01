@@ -24,7 +24,7 @@ class TecnicaListar(ListView):
                                              Q(derivacion__icontains=query))
     #almacenar contexto de la búsqueda
     def get_context_data(self, **kwargs):
-        context = super(ParametroListar, self).get_context_data(**kwargs)
+        context = super(TecnicaListar, self).get_context_data(**kwargs)
         q = self.request.GET.get('q')
         if q: #si existe el valor, lo agrego/actualizo en el contexto
             q = q.replace(" ","+")

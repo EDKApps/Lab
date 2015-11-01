@@ -5,15 +5,15 @@ from .viewpresupuesto import PresupuestoCrear, PresupuestoBorrar, PresupuestoDet
 from .viewmuestra import MuestraListar
 from .viewordendetrabajo import OrdenDeTrabajoListar
 from .viewmatriz import MatrizCrear, MatrizBorrar, MatrizDetalle, MatrizListar, MatrizModificar
-from .viewFamilia import FamiliaCrear, FamiliaBorrar, FamiliaDetalle, FamiliaListar, FamiliaModificar
-from .viewParametro import ParametroCrear, ParametroBorrar, ParametroDetalle, ParametroListar, ParametroModificar
-from .viewTecnica import TecnicaCrear, TecnicaBorrar, TecnicaDetalle, TecnicaListar, TecnicaModificar
-from .viewUnidades import UnidadesCrear, UnidadesBorrar, UnidadesDetalle, UnidadesListar, UnidadesModificar
-from .viewMatrizTecnicaLct import MatrizTecnicaLctCrear, MatrizTecnicaLctBorrar, MatrizTecnicaLctDetalle, MatrizTecnicaLctListar, MatrizTecnicaLctModificar
-from .viewParametroPrecio import ParametroPrecioCrear, ParametroPrecioBorrar, ParametroPrecioDetalle, ParametroPrecioListar, ParametroPrecioModificar
-from .viewGrupo_Parametro import Grupo_ParametroCrear, Grupo_ParametroBorrar, Grupo_ParametroDetalle, Grupo_ParametroListar, Grupo_ParametroModificar
-from .viewGrupoParametroPrecio import GrupoParametroPrecioCrear, GrupoParametroPrecioBorrar, GrupoParametroPrecioDetalle, GrupoParametroPrecioListar, GrupoParametroPrecioModificar
-from .viewGrupoParametroPrecio_Parametro import GrupoParametroPrecio_ParametroCrear, GrupoParametroPrecio_ParametroBorrar, GrupoParametroPrecio_ParametroDetalle, GrupoParametroPrecio_ParametroListar, GrupoParametroPrecio_ParametroModificar
+from .viewfamilia import FamiliaCrear, FamiliaBorrar, FamiliaDetalle, FamiliaListar, FamiliaModificar
+from .viewparametro import ParametroCrear, ParametroBorrar, ParametroDetalle, ParametroListar, ParametroModificar
+from .viewtecnica import TecnicaCrear, TecnicaBorrar, TecnicaDetalle, TecnicaListar, TecnicaModificar
+#from .viewunidades import UnidadesCrear, UnidadesBorrar, UnidadesDetalle, UnidadesListar, UnidadesModificar
+#from .viewmatriztecnicaLct import MatrizTecnicaLctCrear, MatrizTecnicaLctBorrar, MatrizTecnicaLctDetalle, MatrizTecnicaLctListar, MatrizTecnicaLctModificar
+#from .viewparametroprecio import ParametroPrecioCrear, ParametroPrecioBorrar, ParametroPrecioDetalle, ParametroPrecioListar, ParametroPrecioModificar
+#from .viewgrupo_parametro import Grupo_ParametroCrear, Grupo_ParametroBorrar, Grupo_ParametroDetalle, Grupo_ParametroListar, Grupo_ParametroModificar
+#from .viewgrupoparametroprecio import GrupoParametroPrecioCrear, GrupoParametroPrecioBorrar, GrupoParametroPrecioDetalle, GrupoParametroPrecioListar, GrupoParametroPrecioModificar
+#from .viewgrupoparametroprecio_parametro import GrupoParametroPrecio_ParametroCrear, GrupoParametroPrecio_ParametroBorrar, GrupoParametroPrecio_ParametroDetalle, GrupoParametroPrecio_ParametroListar, GrupoParametroPrecio_ParametroModificar
 
 urlpatterns = patterns('',
              
@@ -45,7 +45,7 @@ urlpatterns = patterns('',
     url(r'^matriz/(?P<pk>\d+)/$', MatrizDetalle.as_view(), name='matriz_detalle'),
     url(r'^matriz/(?P<pk>\d+)/modificar/$', MatrizModificar.as_view(), name='matriz_modificar'),
     url(r'^matriz/(?P<pk>\d+)/borrar/$', MatrizBorrar.as_view(), name='matriz_borrar'),
-					   
+						   
 	#Familia
     url(r'^familia/$', FamiliaListar.as_view(), name='familia_listar'),
     url(r'^familia/crear/$', FamiliaCrear.as_view(), name='familia_crear'),
@@ -66,14 +66,17 @@ urlpatterns = patterns('',
     url(r'^tecnica/(?P<pk>\d+)/$', TecnicaDetalle.as_view(), name='tecnica_detalle'),
     url(r'^tecnica/(?P<pk>\d+)/modificar/$', TecnicaModificar.as_view(), name='tecnica_modificar'),
     url(r'^tecnica/(?P<pk>\d+)/borrar/$', TecnicaBorrar.as_view(), name='tecnica_borrar'),	
-	
+)
+
+
+"""
     #Unidades
     url(r'^unidades/$', UnidadesListar.as_view(), name='unidades_listar'),
     url(r'^unidades/crear/$', UnidadesCrear.as_view(), name='unidades_crear'),
     url(r'^unidades/(?P<pk>\d+)/$', UnidadesDetalle.as_view(), name='unidades_detalle'),
     url(r'^unidades/(?P<pk>\d+)/modificar/$', UnidadesModificar.as_view(), name='unidades_modificar'),
     url(r'^unidades/(?P<pk>\d+)/borrar/$', UnidadesBorrar.as_view(), name='unidades_borrar'),
-	
+
     #MatrizTecnicaLct
     url(r'^matriztecnicalct/$', MatrizTecnicaLctListar.as_view(), name='matriztecnicalct_listar'),
     url(r'^matriztecnicalct/crear/$', MatrizTecnicaLctCrear.as_view(), name='matriztecnicalct_crear'),
@@ -108,5 +111,5 @@ urlpatterns = patterns('',
     url(r'^grupoparametroprecio_parametro/(?P<pk>\d+)/$', GrupoParametroPrecioDetalle.as_view(), name='grupoparametroprecio_parametro_detalle'),
     url(r'^grupoparametroprecio_parametro/(?P<pk>\d+)/modificar/$', GrupoParametroPrecioModificar.as_view(), name='grupoparametroprecio_parametro_modificar'),
     url(r'^grupoparametroprecio_parametro/(?P<pk>\d+)/borrar/$', GrupoParametroPrecioBorrar.as_view(), name='grupoparametroprecio_parametro_borrar'),    
-                       
-)
+
+"""

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>{{ unidades}}</h1>
+<h1>{{ Unidades}}</h1>
 
-<p>Unidades: {{ unidades.nombre_unidades }}</p>
+<p>Unidades: {{ unidades.nombre_unidad }}</p>
 <a href="{% url "presupuestos:unidades_listar"  %}">Unidades</a>
 {% endblock content %}
