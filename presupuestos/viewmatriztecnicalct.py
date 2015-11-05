@@ -14,7 +14,7 @@ from .models import MatrizTecnicaLct
 class MatrizTecnicaLctListar(ListView):
     model = MatrizTecnicaLct
     paginate_by = 10
-    
+"""    
     #búsqueda
     def get_queryset(self):
         query = self.request.GET.get('q')
@@ -33,7 +33,7 @@ class MatrizTecnicaLctListar(ListView):
             q = q.replace(" ","+")
             context['query'] = q
         return context    
-    
+ """   
 class MatrizTecnicaLctCrear(CreateView):
     model = MatrizTecnicaLct
     fields = matriztecnicalct_fields

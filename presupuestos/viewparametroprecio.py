@@ -1,0 +1,58 @@
+ # -- coding: utf-8 --
+from django import forms
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.db.models import Q #para OR en consultas
+
+from django.core.urlresolvers import reverse, reverse_lazy
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
+parametroprecio_fields = ('matriz','parametro','tecnica','precio_del_parametro','fecha_de_precio')
+
+from .models import ParametroPrecio
+
+class ParametroPrecioListar(ListView):
+    model = ParametroPrecio
+    paginate_by = 10
+    
+    #búsqueda
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query is None:
+            return ParametroPrecio.objects.all()
+        else:
+            return ParametroPrecio.objects.filter( Q(precio_del_parametro__icontains=query))
+    #almacenar contexto de la búsqueda
+    def get_context_data(self, **kwargs):
+        context = super(ParametroPrecioListar, self).get_context_data(**kwargs)
+        q = self.request.GET.get('q')
+        if q: #si existe el valor, lo agrego/actualizo en el contexto
+            q = q.replace(" ","+")
+            context['query'] = q
+        return context    
+    
+class ParametroPrecioCrear(CreateView):
+    model = ParametroPrecio
+    fields = parametroprecio_fields
+	
+    def get_success_url(self):
+        return reverse('presupuestos:parametroprecio_detalle', kwargs={
+            'pk': self.object.pk,
+        })
+
+class ParametroPrecioDetalle(DetailView):
+    model = ParametroPrecio
+    fields = parametroprecio_fields
+
+class ParametroPrecioModificar(UpdateView):
+    model = ParametroPrecio
+    fields = parametroprecio_fields
+	
+    def get_success_url(self):
+        return reverse('presupuestos:parametroprecio_detalle', kwargs={
+            'pk': self.object.pk,
+        })
+
+class ParametroPrecioBorrar(DeleteView):
+    model = ParametroPrecio
+    success_url = reverse_lazy('presupuestos:parametroprecio_listar')
+    fields = parametroprecio_fields

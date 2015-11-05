@@ -117,8 +117,10 @@ class MatrizTecnicaLct (models.Model):
 	tecnica = models.ForeignKey(Tecnica)
 	lct = models.DecimalField(max_digits=10, decimal_places=6)
 	unidad = models.ForeignKey(Unidades)
-	#todo:agregar str
-
+	
+	def __str__(self):
+		return self.matriz.nombre_matriz+', '+self.parametro.nombre_par+', '+self.tecnica.nombre_tec
+		
 class ParametroPrecio  (models.Model):
 	matriz = models.ForeignKey(Matriz)
 	parametro = models.ForeignKey(Parametro)
