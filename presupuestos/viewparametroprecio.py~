@@ -11,6 +11,8 @@ parametroprecio_fields = ('matriz','parametro','tecnica','precio_del_parametro',
 
 from .models import ParametroPrecio
 
+fecha_de_precio = ('2015', '2016', '2017')
+
 class ParametroPrecioListar(ListView):
     model = ParametroPrecio
     paginate_by = 10

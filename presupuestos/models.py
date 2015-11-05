@@ -100,9 +100,9 @@ class Parametro (models.Model):
 	
 class Tecnica (models.Model):
 	nombre_tec = models.CharField('Tecnica', max_length=100)
-	derivacion= models.CharField(max_length=100)
-	link = models.CharField(max_length=100)
-	observacion = models.CharField(max_length=100)
+	derivacion= models.CharField(max_length=100, blank='true')
+	link = models.CharField(max_length=100, blank='true')
+	observacion = models.CharField(max_length=100, blank='true')
 	def __str__(self):
 		return self.nombre_tec
 	
