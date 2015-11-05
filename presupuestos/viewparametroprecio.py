@@ -21,7 +21,7 @@ class ParametroPrecioListar(ListView):
         if query is None:
             return ParametroPrecio.objects.all()
         else:
-            return ParametroPrecio.objects.filter( Q(precio_del_parametro__icontains=query))
+            return ParametroPrecio.objects.filter( Q(parametro__nombre_par__icontains=query))
     #almacenar contexto de la búsqueda
     def get_context_data(self, **kwargs):
         context = super(ParametroPrecioListar, self).get_context_data(**kwargs)

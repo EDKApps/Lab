@@ -11,8 +11,6 @@ parametroprecio_fields = ('matriz','parametro','tecnica','precio_del_parametro',
 
 from .models import ParametroPrecio
 
-fecha_de_precio = ('2015', '2016', '2017')
-
 class ParametroPrecioListar(ListView):
     model = ParametroPrecio
     paginate_by = 10
@@ -23,7 +21,7 @@ class ParametroPrecioListar(ListView):
         if query is None:
             return ParametroPrecio.objects.all()
         else:
-            return ParametroPrecio.objects.filter( Q(precio_del_parametro__icontains=query))
+            return ParametroPrecio.objects.filter( Q(parametro_nombre_par__icontains=query))
     #almacenar contexto de la búsqueda
     def get_context_data(self, **kwargs):
         context = super(ParametroPrecioListar, self).get_context_data(**kwargs)

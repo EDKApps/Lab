@@ -126,7 +126,7 @@ class ParametroPrecio  (models.Model):
 	parametro = models.ForeignKey(Parametro)
 	tecnica = models.ForeignKey(Tecnica)
 	precio_del_parametro = models.DecimalField(max_digits=8, decimal_places=2)
-	fecha_de_precio = models.DateField('Fecha del precio')
+	fecha_de_precio = models.DateField('Fecha del precio', default=date.today)
 	
 	#def familia(self): todo: (Inferido) a partir del parametro retornar su familia
 		
