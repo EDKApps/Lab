@@ -107,7 +107,7 @@ class Tecnica (models.Model):
 		return self.nombre_tec
 	
 class Unidades (models.Model):
-	nombre_unidad = models.CharField('Unidades', max_length=100)
+	nombre_unidad = models.CharField(max_length=100)
 	def __str__(self):
 		return self.nombre_unidad
 

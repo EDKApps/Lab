@@ -2,6 +2,6 @@
 {% block content %}
 <h1>{{ familia }}</h1>
 
-<p>Familia: {{ familia.nombre_familia }}</p>
+<p>Matriz: {{ familia.nombre_familia }}</p>
 <a href="{% url "presupuestos:familia_listar"  %}">Familias</a>
 {% endblock content %}
