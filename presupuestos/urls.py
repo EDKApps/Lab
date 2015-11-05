@@ -12,7 +12,7 @@ from .viewunidades import UnidadesCrear, UnidadesBorrar, UnidadesDetalle, Unidad
 from .viewmatriztecnicalct import MatrizTecnicaLctCrear, MatrizTecnicaLctBorrar, MatrizTecnicaLctDetalle, MatrizTecnicaLctListar, MatrizTecnicaLctModificar
 from .viewparametroprecio import ParametroPrecioCrear, ParametroPrecioBorrar, ParametroPrecioDetalle, ParametroPrecioListar, ParametroPrecioModificar
 from .viewgrupoparametro import GrupoParametroCrear, GrupoParametroBorrar, GrupoParametroDetalle, GrupoParametroListar, GrupoParametroModificar
-#from .viewgrupoparametroprecio import GrupoParametroPrecioCrear, GrupoParametroPrecioBorrar, GrupoParametroPrecioDetalle, GrupoParametroPrecioListar, GrupoParametroPrecioModificar
+from .viewgrupoparametroprecio import GrupoParametroPrecioCrear, GrupoParametroPrecioBorrar, GrupoParametroPrecioDetalle, GrupoParametroPrecioListar, GrupoParametroPrecioModificar
 #from .viewgrupoparametroprecio_parametro import GrupoParametroPrecio_ParametroCrear, GrupoParametroPrecio_ParametroBorrar, GrupoParametroPrecio_ParametroDetalle, GrupoParametroPrecio_ParametroListar, GrupoParametroPrecio_ParametroModificar
 
 urlpatterns = patterns('',
@@ -88,7 +88,6 @@ urlpatterns = patterns('',
     url(r'^parametroprecio/(?P<pk>\d+)/$', ParametroPrecioDetalle.as_view(), name='parametroprecio_detalle'),
     url(r'^parametroprecio/(?P<pk>\d+)/modificar/$', ParametroPrecioModificar.as_view(), name='parametroprecio_modificar'),
     url(r'^parametroprecio/(?P<pk>\d+)/borrar/$', ParametroPrecioBorrar.as_view(), name='parametroprecio_borrar'),
-
 					   
 	#Grupo_Parametro
     url(r'^grupoparametro/$', GrupoParametroListar.as_view(), name='grupoparametro_listar'),
@@ -96,6 +95,14 @@ urlpatterns = patterns('',
     url(r'^grupoparametro/(?P<pk>\d+)/$', GrupoParametroDetalle.as_view(), name='grupoparametro_detalle'),
     url(r'^grupoparametro/(?P<pk>\d+)/modificar/$', GrupoParametroModificar.as_view(), name='grupoparametro_modificar'),
     url(r'^grupoparametro/(?P<pk>\d+)/borrar/$', GrupoParametroBorrar.as_view(), name='grupoparametro_borrar'), 
+                       
+    #GrupoParametroPrecio
+    url(r'^grupoparametroprecio/$', GrupoParametroPrecioListar.as_view(), name='grupoparametroprecio_listar'),
+    url(r'^grupoparametroprecio/crear/$', GrupoParametroPrecioCrear.as_view(), name='grupoparametroprecio_crear'),
+    url(r'^grupoparametroprecio/(?P<pk>\d+)/$', GrupoParametroPrecioDetalle.as_view(), name='grupoparametroprecio_detalle'),
+    url(r'^grupoparametroprecio/(?P<pk>\d+)/modificar/$', GrupoParametroPrecioModificar.as_view(), name='grupoparametroprecio_modificar'),
+    url(r'^grupoparametroprecio/(?P<pk>\d+)/borrar/$', GrupoParametroPrecioBorrar.as_view(), name='grupoparametroprecio_borrar'),    
+                       
 )
 
 
@@ -105,12 +112,6 @@ urlpatterns = patterns('',
 
    
                        
-    #GrupoParametroPrecio
-    url(r'^grupoparametroprecio/$', GrupoParametroPrecioListar.as_view(), name='grupoparametroprecio_listar'),
-    url(r'^grupoparametroprecio/crear/$', GrupoParametroPrecioCrear.as_view(), name='grupoparametroprecio_crear'),
-    url(r'^grupoparametroprecio/(?P<pk>\d+)/$', GrupoParametroPrecioDetalle.as_view(), name='grupoparametroprecio_detalle'),
-    url(r'^grupoparametroprecio/(?P<pk>\d+)/modificar/$', GrupoParametroPrecioModificar.as_view(), name='grupoparametroprecio_modificar'),
-    url(r'^grupoparametroprecio/(?P<pk>\d+)/borrar/$', GrupoParametroPrecioBorrar.as_view(), name='grupoparametroprecio_borrar'),    
 
     #GrupoParametroPrecio_Parametro
     url(r'^grupoparametroprecio_parametro/$', GrupoParametroPrecioListar.as_view(), name='grupoparametroprecio_parametro_listar'),

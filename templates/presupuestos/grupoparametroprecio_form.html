@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <title>Grupo Parámetro Precio</title>
+    <script src="{% static 'js/djformset/jquery-1.3.2.min.js' %}"></script>
+    <script src="{% static 'js/djformset/jquery.formset.js' %}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".inline.{{ grupoparametroprecioparametro_form.prefix }}").formset({
+                prefix: "{{ grupoparametroprecioparametro_form.prefix }}",
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Agregar / Modificar Grupo Parámetro Precio</h1>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div>
+                {{ form.as_p }}
+            </div>
+            <fieldset>
+                <legend>Parámetros</legend>
+                {{ grupoparametroprecioparametro_form.management_form }}
+                {{ grupoparametroprecioparametro_form.non_form_errors }}
+                {% for form in grupoparametroprecioparametro_form %}
+                    {{ form.id }}
+                    <div class="inline {{ grupoparametroprecioparametro_form.prefix }}">
+                        {{ form.parametro.errors }}
+                        {{ form.parametro.label_tag }}
+                        {{ form.parametro }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <input type="submit" value="Agregar Grupo Parámetro Precio" class="submit" />
+        </form>
+    </div>
+<script>
+    $(document).ready(function(){
+       //$('.datepicker').datepicker({});
+	   $("[id^='id_fecha']").datepicker({ languaje: 'es', format: 'dd/mm/yyyy', startDate: '-1y'})
+    });
+</script>  
+</body>
+</html>
