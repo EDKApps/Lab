@@ -25,11 +25,11 @@
 	<tr>
     	<td><a href="{% url "presupuestos:grupoparametroprecio_modificar" grupoparametroprecio.id %}" ><img src= "{% static "images/accion_modificar.png"%}" data-toggle="tooltip" data-placement="top" title="Modificar" alt= "Modificar"></a></td>
     	<td><a href="{% url "presupuestos:grupoparametroprecio_borrar" grupoparametroprecio.id %}"><img src= "{% static "images/accion_borrar.png"%}" data-toggle="tooltip" data-placement="top" title="Borrar" alt= "Borrar"></a></td>
-		<td>{{ parametroprecio.matriz }}</td>
-		<td>{{ parametroprecio.grupo_parametro }}</td>
-		<td>{{ parametroprecio.tecnica }}</td>
-		<td>{{ parametroprecio.precio_del_grupo }}</td>
-		<td>{{ parametroprecio.fecha_de_precio }}</td>
+		<td>{{ grupoparametroprecio.matriz }}</td>
+		<td>{{ grupoparametroprecio.grupo_parametro }}</td>
+		<td>{{ grupoparametroprecio.tecnica }}</td>
+		<td>{{ grupoparametroprecio.precio_del_grupo }}</td>
+		<td>{{ grupoparametroprecio.fecha_de_precio }}</td>
 	</tr>
     {% endfor %}
     </tbody>
