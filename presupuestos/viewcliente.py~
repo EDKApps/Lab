@@ -6,7 +6,8 @@ from django.db.models import Q #para OR en consultas
 
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
-cliente_fields = ('empresa','contacto', 'funcion', 'domicilio','localidad', 'telefono_fijo', 'telefono_movil','email','cuit','nota')
+cliente_fields = ('empresa','contacto', 'domicilio','telefono_fijo','telefono_movil',
+			 'email','cuit','localidad','nota')
 
 from .models import Cliente
 

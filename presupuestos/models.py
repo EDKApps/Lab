@@ -12,16 +12,17 @@ from datetime import date
 
 class Cliente (models.Model):
 	empresa = models.CharField(max_length=100)
-	contacto_nombre = models.CharField(max_length=100)
-	contacto_apellido = models.CharField(max_length=100)
+	contacto = models.CharField('Contacto (apellido, nombre)', max_length=200)
+	funcion = models.CharField(max_length=100, blank='true')
 	domicilio = models.CharField(max_length=100, blank='true')
+	localidad = models.CharField(max_length=200, blank='true')
 	telefono_fijo = models.CharField(max_length=100, blank='true')
 	telefono_movil = models.CharField(max_length=100, blank='true')
 	email = models.CharField(max_length=100, blank='true')
 	cuit = models.CharField(max_length=13, blank='true')
 	nota = models.CharField(max_length=200, blank='true')
 	def __str__(self):
-		return self.contacto_apellido+', '+self.contacto_nombre
+		return self.contacto+', '+self.empresa
 	
 class Tipo (models.Model):
 	nombre_tipo = models.CharField(max_length=100)
