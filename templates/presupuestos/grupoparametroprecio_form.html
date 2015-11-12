@@ -8,8 +8,8 @@
     <script src="{% static 'js/djformset/jquery.formset.js' %}"></script>
     <script type="text/javascript">
         $(function() {
-            $(".inline.{{ grupoparametroprecioparametro_form.prefix }}").formset({
-                prefix: "{{ grupoparametroprecioparametro_form.prefix }}",
+            $(".inline.{{ parametro_form.prefix }}").formset({
+                prefix: "{{ parametro_form.prefix }}",
             })
         })
     </script>
@@ -25,25 +25,20 @@
             </div>
             <fieldset>
                 <legend>Parámetros</legend>
-                {{ grupoparametroprecioparametro_form.management_form }}
-                {{ grupoparametroprecioparametro_form.non_form_errors }}
-                {% for form in grupoparametroprecioparametro_form %}
+                {{ parametro_form.management_form }}
+                {{ parametro_form.non_form_errors }}
+                {% for form in parametro_form %}
                     {{ form.id }}
-                    <div class="inline {{ grupoparametroprecioparametro_form.prefix }}">
+                    <div class="inline {{ parametro_form.prefix }}">
+						{% if form.instance.pk %}{{ form.DELETE }}{% endif %}
                         {{ form.parametro.errors }}
                         {{ form.parametro.label_tag }}
                         {{ form.parametro }}
                     </div>
                 {% endfor %}
             </fieldset>
-            <input type="submit" value="Agregar Grupo Parámetro Precio" class="submit" />
+            <input type="submit" value="Confirmar" class="submit" />
         </form>
     </div>
-<script>
-    $(document).ready(function(){
-       //$('.datepicker').datepicker({});
-	   $("[id^='id_fecha']").datepicker({ languaje: 'es', format: 'dd/mm/yyyy', startDate: '-1y'})
-    });
-</script>  
 </body>
 </html>

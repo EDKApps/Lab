@@ -124,4 +124,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/opt/EDKAppsLab/static/'
+STATIC_ROOT = '/opt/EDKAppsLab/static/' #para el repositorio
+#STATIC_ROOT = '/home/marcelo/EDKAppsLab/Lab/presupuestos/static'
+
