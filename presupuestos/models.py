@@ -164,3 +164,14 @@ class GrupoParametroPrecio_Parametro (models.Model):
 	parametro = models.ForeignKey(Parametro)
 	#todo:agregar inferida de unidades y lct, que vienen de matriztecnicalct
 	
+class Item (models.Model):
+	numero = models.IntegerField(default= 0)
+	descripcion = models.CharField(max_length= 100, blank='true')
+	matriz = models.ForeignKey(Matriz)
+	cantidadMuestra = models.IntegerField(default= 0)
+	#def __str__(self):
+	#	return self.numero
+
+
+	
+	

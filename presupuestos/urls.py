@@ -14,6 +14,7 @@ from .viewparametroprecio import ParametroPrecioCrear, ParametroPrecioBorrar, Pa
 from .viewgrupoparametro import GrupoParametroCrear, GrupoParametroBorrar, GrupoParametroDetalle, GrupoParametroListar, GrupoParametroModificar
 from .viewgrupoparametroprecio import GrupoParametroPrecioCrear, GrupoParametroPrecioBorrar, GrupoParametroPrecioDetalle, GrupoParametroPrecioListar, GrupoParametroPrecioModificar
 #from .viewgrupoparametroprecio_parametro import GrupoParametroPrecio_ParametroCrear, GrupoParametroPrecio_ParametroBorrar, GrupoParametroPrecio_ParametroDetalle, GrupoParametroPrecio_ParametroListar, GrupoParametroPrecio_ParametroModificar
+from .viewitem import ItemCrear, ItemBorrar, ItemDetalle, ItemListar, ItemModificar
 
 urlpatterns = patterns('',
              
@@ -103,6 +104,14 @@ urlpatterns = patterns('',
     url(r'^grupoparametroprecio/(?P<pk>\d+)/modificar/$', GrupoParametroPrecioModificar.as_view(), name='grupoparametroprecio_modificar'),
     url(r'^grupoparametroprecio/(?P<pk>\d+)/borrar/$', GrupoParametroPrecioBorrar.as_view(), name='grupoparametroprecio_borrar'),    
                        
+	#Item
+    url(r'^item/$', ItemListar.as_view(), name='item_listar'),
+    url(r'^item/crear/$', ItemCrear.as_view(), name='item_crear'),
+    url(r'^item/(?P<pk>\d+)/$', ItemDetalle.as_view(), name='item_detalle'),
+    url(r'^item/(?P<pk>\d+)/modificar/$', ItemModificar.as_view(), name='item_modificar'),
+    url(r'^item/(?P<pk>\d+)/borrar/$', ItemBorrar.as_view(), name='item_borrar'),
+					  
+					  
 )
 
 
