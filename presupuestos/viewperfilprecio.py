@@ -7,40 +7,40 @@ from django.db.models import Q #para OR en consultas
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
-grupoparametroprecio_fields = ('matriz','grupo_parametro','tecnica','precio_del_grupo','fecha_de_precio')
+perfilprecio_fields = ('nombre','matriz','perfil','tecnica','precio_perfil','fecha_precio')
 
-from .formgrupoparametroprecio import GrupoParametroPrecioForm, GrupoParametroPrecio_ParametroFormSet
-from .models import GrupoParametroPrecio, GrupoParametroPrecio_Parametro
+from .formperfilprecio import PerfilPrecioForm, PerfilPrecio_ParametroFormSet
+from .models import PerfilPrecio, PerfilPrecio_Parametro
 
-class GrupoParametroPrecioListar(ListView):
-    model = GrupoParametroPrecio
+class PerfilPrecioListar(ListView):
+    model = PerfilPrecio
     paginate_by = 10
     
     #búsqueda
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query is None:
-            return GrupoParametroPrecio.objects.all()
+            return PerfilPrecio.objects.all()
         else:
-            return GrupoParametroPrecio.objects.filter( Q(matriz__nombre_matriz__icontains=query) | 
-                                          Q(grupo_parametro__nombre_gparametro__icontains=query) | 
+            return PerfilPrecio.objects.filter( Q(matriz__nombre_matriz__icontains=query) | 
+                                          Q(perfil__nombre__icontains=query) | 
                                           Q(tecnica__nombre_tec__icontains=query)  )        
         
     #almacenar contexto de la búsqueda
     def get_context_data(self, **kwargs):
-        context = super(GrupoParametroPrecioListar, self).get_context_data(**kwargs)
+        context = super(PerfilPrecioListar, self).get_context_data(**kwargs)
         q = self.request.GET.get('q')
         if q: #si existe el valor, lo agrego/actualizo en el contexto
             q = q.replace(" ","+")
             context['query'] = q
         return context    
     
-class GrupoParametroPrecioCrear(CreateView):
-    model = GrupoParametroPrecio
-    #fields = grupoparametroprecio_fields
-    form_class= GrupoParametroPrecioForm
+class PerfilPrecioCrear(CreateView):
+    model = PerfilPrecio
+    #fields = perfilprecio_fields
+    form_class= PerfilPrecioForm
     def get_success_url(self):
-        return reverse('presupuestos:grupoparametroprecio_detalle', kwargs={
+        return reverse('presupuestos:perfilprecio_detalle', kwargs={
             'pk': self.object.pk,
         })
     def get(self, request, *args, **kwargs):
@@ -50,7 +50,7 @@ class GrupoParametroPrecioCrear(CreateView):
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        parametro_form = GrupoParametroPrecio_ParametroFormSet()
+        parametro_form = PerfilPrecio_ParametroFormSet()
         return self.render_to_response(
             self.get_context_data(form=form,
                                   parametro_form=parametro_form,
@@ -63,7 +63,7 @@ class GrupoParametroPrecioCrear(CreateView):
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        parametro_form = GrupoParametroPrecio_ParametroFormSet(self.request.POST)
+        parametro_form = PerfilPrecio_ParametroFormSet(self.request.POST)
         if (form.is_valid() and parametro_form.is_valid()):
             return self.form_valid(form, parametro_form)
         else:
@@ -91,13 +91,13 @@ class GrupoParametroPrecioCrear(CreateView):
         
         
         
-class GrupoParametroPrecioDetalle(DetailView):
-    model = GrupoParametroPrecio
-    fields = grupoparametroprecio_fields
+class PerfilPrecioDetalle(DetailView):
+    model = PerfilPrecio
+    fields = perfilprecio_fields
 
-class GrupoParametroPrecioModificar(UpdateView):
-    model = GrupoParametroPrecio
-    form_class= GrupoParametroPrecioForm
+class PerfilPrecioModificar(UpdateView):
+    model = PerfilPrecio
+    form_class= PerfilPrecioForm
     
     def get(self, request, *args, **kwargs):
         """
@@ -107,10 +107,10 @@ class GrupoParametroPrecioModificar(UpdateView):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         #obtener parametros
-        #parametros = GrupoParametroPrecio_Parametro.objects.filter(grupoparametroprecio=self.object).values() #.order_by('name').values()
+        #parametros = PerfilPrecio_Parametro.objects.filter(perfilprecio=self.object).values() #.order_by('name').values()
         
         #render form
-        parametro_form = GrupoParametroPrecio_ParametroFormSet(instance = self.object) #antes (initial = parametros)
+        parametro_form = PerfilPrecio_ParametroFormSet(instance = self.object) #antes (initial = parametros)
         
         return self.render_to_response(
             self.get_context_data(form=form,
@@ -125,10 +125,10 @@ class GrupoParametroPrecioModificar(UpdateView):
         self.object = self.get_object()
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        #parametro_form = GrupoParametroPrecio_ParametroFormSet(self.request.POST)
+        #parametro_form = PerfilPrecio_ParametroFormSet(self.request.POST)
         
-        parametro_form = GrupoParametroPrecio_ParametroFormSet(instance = GrupoParametroPrecio())
-        parametro_form = GrupoParametroPrecio_ParametroFormSet(request.POST,request.FILES,instance= self.object )
+        parametro_form = PerfilPrecio_ParametroFormSet(instance = PerfilPrecio())
+        parametro_form = PerfilPrecio_ParametroFormSet(request.POST,request.FILES,instance= self.object )
         
         if (form.is_valid() and parametro_form.is_valid()):
 
@@ -138,7 +138,7 @@ class GrupoParametroPrecioModificar(UpdateView):
             self.object.save()
             parametro_form.save()
             #Eliminar lo indicado del subnivel
-            #GrupoParametroPrecio_Parametro.objects.filter(grupoparametroprecio=self.object, eliminado = True).delete()
+            #PerfilPrecio_Parametro.objects.filter(perfilprecio=self.object, eliminado = True).delete()
             return HttpResponseRedirect(self.get_success_url())
             
             
@@ -146,7 +146,7 @@ class GrupoParametroPrecioModificar(UpdateView):
             return self.form_invalid(form, parametro_form)
     
     def get_success_url(self):
-        return reverse('presupuestos:grupoparametroprecio_detalle', kwargs={
+        return reverse('presupuestos:perfilprecio_detalle', kwargs={
             'pk': self.object.pk,
         })
             
@@ -159,7 +159,7 @@ class GrupoParametroPrecioModificar(UpdateView):
                 self.get_context_data(form=form,
                                       parametro_form = parametro_form))
 
-class GrupoParametroPrecioBorrar(DeleteView):
-    model = GrupoParametroPrecio
-    success_url = reverse_lazy('presupuestos:grupoparametroprecio_listar')
-    fields = grupoparametroprecio_fields
+class PerfilPrecioBorrar(DeleteView):
+    model = PerfilPrecio
+    success_url = reverse_lazy('presupuestos:perfilprecio_listar')
+    fields = perfilprecio_fields
