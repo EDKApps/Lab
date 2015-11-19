@@ -39,9 +39,10 @@ class Presupuesto (models.Model):
 	cliente = models.ForeignKey(Cliente)
 	referencia_clave = models.CharField(max_length=100, blank='true',default='S-P')
 	referencia = models.CharField(max_length=20,blank='true') #autoincremental
-	fecha_de_solicitud = models.DateField('fecha de solicitud')
-	fecha_de_aprobacion = models.DateField('fecha de aprobacion')
-	fecha_de_vencimiento = models.DateField('fecha de vencimiento',default=date.today)
+	fecha_solicitud = models.DateField('fecha de solicitud', default=date.today)
+	fecha_vencimiento = models.DateField('fecha de vencimiento', blank='true', null='true')
+	fecha_envio = models.DateField('fecha de envio', blank='true', null='true')
+	fecha_aprobacion = models.DateField('fecha de aprobacion', blank='true', null='true')
 	descripcion = models.CharField(max_length=100)
 	tipo = models.ForeignKey(Tipo)
 	estado = models.ForeignKey(Estado)
