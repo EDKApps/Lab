@@ -173,6 +173,12 @@ class Item (models.Model):
 	#def __str__(self):
 	#	return self.numero
 
-
+class Campania (models.Model):
+	descripcion = models.CharField(max_length= 100)
+	cantidad = models.IntegerField(default='0')
+	unidad_medida = models.CharField(max_length= 100, blank='true')
+	valor_unitario = models.CharField(max_length= 100, blank='true')
+	
+	
 	
 	
