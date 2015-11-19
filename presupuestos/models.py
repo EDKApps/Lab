@@ -88,7 +88,7 @@ class Matriz (models.Model):
 	def __str__(self):
 		return self.nombre_matriz
 	
-class Familia (models.Model):
+class Familia (models.Model): # también llamada Grupo
 	nombre_familia= models.CharField(max_length=100)
 	def __str__(self):
 		return self.nombre_familia
@@ -146,21 +146,21 @@ class ParametroPrecio  (models.Model):
 		else:
 			return mt.unidad
 
-class Grupo_Parametro (models.Model):
-	nombre_gparametro = models.CharField("Grupo Parametro", max_length=100)
+class Perfil (models.Model): #ex Grupo_Parametro
+	nombre = models.CharField("Perfil", max_length=100)
 	def __str__(self):
 		return self.nombre_gparametro
 	
-class GrupoParametroPrecio (models.Model):
-	
+class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
+	nombre = models.CharField("Nombre", max_length=100)
 	matriz = models.ForeignKey(Matriz)
-	grupo_parametro  = models.ForeignKey(Grupo_Parametro)
+	perfil  = models.ForeignKey(Perfil)
 	tecnica = models.ForeignKey(Tecnica)
-	precio_del_grupo = models.DecimalField(max_digits=8, decimal_places=2)
-	fecha_de_precio = models.DateField('Fecha del precio')
+	precio_perfil = models.DecimalField(max_digits=8, decimal_places=2)
+	fecha_precio = models.DateField('Fecha del precio')
 	
-class GrupoParametroPrecio_Parametro (models.Model):
-	grupoparametroprecio = models.ForeignKey(GrupoParametroPrecio)
+class PerfilPrecio_Parametro (models.Model): # ex GrupoParametroPrecio_Parametro
+	perfilPrecio = models.ForeignKey(PerfilPrecio)
 	parametro = models.ForeignKey(Parametro)
 	#todo:agregar inferida de unidades y lct, que vienen de matriztecnicalct
 	
