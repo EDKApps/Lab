@@ -150,7 +150,7 @@ class ParametroPrecio  (models.Model):
 class Perfil (models.Model): #ex Grupo_Parametro
 	nombre = models.CharField("Perfil", max_length=100)
 	def __str__(self):
-		return self.nombre_gparametro
+		return self.nombre
 	
 class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 	nombre = models.CharField("Nombre", max_length=100)
@@ -159,6 +159,8 @@ class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 	tecnica = models.ForeignKey(Tecnica)
 	precio_perfil = models.DecimalField(max_digits=8, decimal_places=2)
 	fecha_precio = models.DateField('Fecha del precio')
+	def __str__(self):
+		return self.nombre
 	
 class PerfilPrecio_Parametro (models.Model): # ex GrupoParametroPrecio_Parametro
 	perfilPrecio = models.ForeignKey(PerfilPrecio)

@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>{{ grupo_parametro }}</h1>
-
-<p>Grupo Parametro: {{ grupo_parametro.nombre_gparametro}}</p>
-<a href="{% url "presupuestos:grupoparametro_listar"  %}">Grupo de Parametros</a>
-{% endblock content %}

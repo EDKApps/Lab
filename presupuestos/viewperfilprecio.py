@@ -22,7 +22,8 @@ class PerfilPrecioListar(ListView):
         if query is None:
             return PerfilPrecio.objects.all()
         else:
-            return PerfilPrecio.objects.filter( Q(matriz__nombre_matriz__icontains=query) | 
+            return PerfilPrecio.objects.filter (Q(nombre__icontains=query) | 
+				                          Q(matriz__nombre_matriz__icontains=query) | 
                                           Q(perfil__nombre__icontains=query) | 
                                           Q(tecnica__nombre_tec__icontains=query)  )        
         

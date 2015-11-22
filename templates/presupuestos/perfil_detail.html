@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ perfil }}</h1>
+
+<p>Perfil: {{ perfil.nombre}}</p>
+<a href="{% url "presupuestos:perfil_listar"  %}">Perfil</a>
+{% endblock content %}
