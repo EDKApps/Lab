@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block content %}
 <div class="container">
-	<h2>Familia</h2>
+	<h2>Grupo</h2>
 		<form method="get" action="/presupuestos/familia/">
 		<p><label for="id_q">Filtro:</label>
 		<input type="text" name="q" id="id_q" value="{{ query }}" />
@@ -13,7 +13,7 @@
       <tr>
 		<th></th>
 		<th></th>		  
-        <th>Familia</th>
+        <th>Grupo</th>
       </tr>
     </thead>
     <tbody>	 	
@@ -21,7 +21,7 @@
 	<tr>
     	<td><a href="{% url "presupuestos:familia_modificar" familia.id %}" ><img src= "{% static "images/accion_modificar.png"%}" data-toggle="tooltip" data-placement="top" title="Modificar" alt= "Modificar"></a></td>
     	<td><a href="{% url "presupuestos:familia_borrar" familia.id %}"><img src= "{% static "images/accion_borrar.png"%}" data-toggle="tooltip" data-placement="top" title="Borrar" alt= "Borrar"></a></td>
-		<td>{{ familia.nombre_familia }}</td>
+		<td>{{ familia.nombre }}</td>
 	</tr>
     {% endfor %}
     </tbody>

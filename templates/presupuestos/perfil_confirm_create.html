@@ -1,0 +1,6 @@
+{% extends "menu.html" %}
+{% block content %}
+<h1>Perfil {{ perfil }} creado correctamente</h1>
+<p>Nombre: {{ perfil.nombre }}</p>
+<a href="{% url "presupuestos:perfil_listar"  %}">Perfiles</a>
+{% endblock content %}

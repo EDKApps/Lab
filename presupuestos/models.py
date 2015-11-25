@@ -90,9 +90,9 @@ class Matriz (models.Model):
 		return self.nombre_matriz
 	
 class Familia (models.Model): # también llamada Grupo
-	nombre_familia= models.CharField(max_length=100)
+	nombre= models.CharField(max_length=100)
 	def __str__(self):
-		return self.nombre_familia
+		return self.nombre
 	
 class Parametro (models.Model):
 	nombre_par = models.CharField('Parametro', max_length=100)
@@ -122,7 +122,7 @@ class MatrizTecnicaLct (models.Model):
 	
 	def __str__(self):
 		return self.matriz.nombre_matriz+', '+self.parametro.nombre_par+', '+self.tecnica.nombre_tec
-		
+	
 class ParametroPrecio  (models.Model):
 	matriz = models.ForeignKey(Matriz)
 	parametro = models.ForeignKey(Parametro)
@@ -148,7 +148,7 @@ class ParametroPrecio  (models.Model):
 			return mt.unidad
 
 class Perfil (models.Model): #ex Grupo_Parametro
-	nombre = models.CharField("Perfil", max_length=100)
+	nombre = models.CharField("Nombre", max_length=100)
 	def __str__(self):
 		return self.nombre
 	
@@ -157,7 +157,6 @@ class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 	matriz = models.ForeignKey(Matriz)
 	perfil  = models.ForeignKey(Perfil)
 	tecnica = models.ForeignKey(Tecnica)
-	precio_perfil = models.DecimalField(max_digits=8, decimal_places=2)
 	fecha_precio = models.DateField('Fecha del precio')
 	def __str__(self):
 		return self.nombre
@@ -165,6 +164,7 @@ class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 class PerfilPrecio_Parametro (models.Model): # ex GrupoParametroPrecio_Parametro
 	perfilPrecio = models.ForeignKey(PerfilPrecio)
 	parametro = models.ForeignKey(Parametro)
+	precio = models.DecimalField(max_digits=8, decimal_places=2)
 	#todo:agregar inferida de unidades y lct, que vienen de matriztecnicalct
 	
 class Item (models.Model):

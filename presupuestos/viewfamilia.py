@@ -6,7 +6,7 @@ from django.db.models import Q #para OR en consultas
 
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
-familia_fields = ('nombre_familia',)
+familia_fields = ('nombre',)
 
 from .models import Familia
 
@@ -21,7 +21,7 @@ class FamiliaListar(ListView):
         if query is None:
             return Familia.objects.all()
         else:
-            return Familia.objects.filter( Q(nombre_familia__icontains=query) )
+            return Familia.objects.filter( Q(nombre__icontains=query) )
                                   
     #almacenar contexto de la búsqueda
     def get_context_data(self, **kwargs):
@@ -37,7 +37,7 @@ class FamiliaCrear(CreateView):
     fields = familia_fields
 	
     def get_success_url(self):
-        return reverse('presupuestos:familia_detalle', kwargs={
+        return reverse('presupuestos:familia_confirma_alta', kwargs={
             'pk': self.object.pk,
         })
 
@@ -45,6 +45,11 @@ class FamiliaDetalle(DetailView):
     model = Familia
     fields = familia_fields
 
+class FamiliaConfirmaAlta(DetailView):
+    template_name = 'presupuestos/familia_confirm_create.html'
+    model = Familia
+    fields = familia_fields
+    
 class FamiliaModificar(UpdateView):
     model = Familia
     fields = familia_fields

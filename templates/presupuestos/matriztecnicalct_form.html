@@ -1,8 +1,8 @@
 {% extends "menu.html" %}
 {% block content %}
-<h1>Matriz Tecnica LCT</h1>
+<h1>Límite de cuantificación - LC</h1>
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Confirmar" />
 </form>
 {% endblock content %}

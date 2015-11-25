@@ -35,7 +35,7 @@ class PerfilCrear(CreateView):
     fields = perfil_fields
 	
     def get_success_url(self):
-        return reverse('presupuestos:perfil_detalle', kwargs={
+        return reverse('presupuestos:perfil_confirma_alta', kwargs={
             'pk': self.object.pk,
         })
 
@@ -43,6 +43,11 @@ class PerfilDetalle(DetailView):
     model = Perfil
     fields = perfil_fields
 
+class PerfilConfirmaAlta(DetailView):
+    template_name = 'presupuestos/perfil_confirm_create.html'
+    model = Perfil
+    fields = perfil_fields
+    
 class PerfilModificar(UpdateView):
     model = Perfil
     fields = perfil_fields

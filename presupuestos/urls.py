@@ -5,14 +5,14 @@ from .viewpresupuesto import PresupuestoCrear, PresupuestoBorrar, PresupuestoDet
 from .viewmuestra import MuestraListar
 from .viewordendetrabajo import OrdenDeTrabajoListar
 from .viewmatriz import MatrizCrear, MatrizBorrar, MatrizDetalle, MatrizListar, MatrizModificar
-from .viewfamilia import FamiliaCrear, FamiliaBorrar, FamiliaDetalle, FamiliaListar, FamiliaModificar
+from .viewfamilia import FamiliaCrear, FamiliaBorrar, FamiliaDetalle, FamiliaConfirmaAlta, FamiliaListar, FamiliaModificar
 from .viewparametro import ParametroCrear, ParametroBorrar, ParametroDetalle, ParametroListar, ParametroModificar
 from .viewtecnica import TecnicaCrear, TecnicaBorrar, TecnicaDetalle, TecnicaListar, TecnicaModificar
 from .viewunidades import UnidadesCrear, UnidadesBorrar, UnidadesDetalle, UnidadesListar, UnidadesModificar
-from .viewmatriztecnicalct import MatrizTecnicaLctCrear, MatrizTecnicaLctBorrar, MatrizTecnicaLctDetalle, MatrizTecnicaLctListar, MatrizTecnicaLctModificar
+from .viewmatriztecnicalct import MatrizTecnicaLctCrear, MatrizTecnicaLctBorrar, MatrizTecnicaLctDetalle,MatrizTecnicaLctConfirmaAlta, MatrizTecnicaLctListar, MatrizTecnicaLctModificar
 from .viewparametroprecio import ParametroPrecioCrear, ParametroPrecioBorrar, ParametroPrecioDetalle, ParametroPrecioListar, ParametroPrecioModificar
-from .viewperfil import PerfilCrear, PerfilBorrar, PerfilDetalle, PerfilListar, PerfilModificar
-from .viewperfilprecio import PerfilPrecioCrear, PerfilPrecioBorrar, PerfilPrecioDetalle, PerfilPrecioListar, PerfilPrecioModificar
+from .viewperfil import PerfilCrear, PerfilBorrar, PerfilDetalle, PerfilConfirmaAlta, PerfilListar, PerfilModificar
+from .viewperfilprecio import PerfilPrecioCrear, PerfilPrecioBorrar, PerfilPrecioDetalle, PerfilPrecioConfirmaAlta, PerfilPrecioListar, PerfilPrecioModificar
 from .viewitem import ItemCrear, ItemBorrar, ItemDetalle, ItemListar, ItemModificar
 
 urlpatterns = patterns('',
@@ -50,6 +50,7 @@ urlpatterns = patterns('',
     url(r'^familia/$', FamiliaListar.as_view(), name='familia_listar'),
     url(r'^familia/crear/$', FamiliaCrear.as_view(), name='familia_crear'),
     url(r'^familia/(?P<pk>\d+)/$', FamiliaDetalle.as_view(), name='familia_detalle'),
+	url(r'^familia/(?P<pk>\d+)/confirmaalta$', FamiliaConfirmaAlta.as_view(), name='familia_confirma_alta'),
     url(r'^familia/(?P<pk>\d+)/modificar/$', FamiliaModificar.as_view(), name='familia_modificar'),
     url(r'^familia/(?P<pk>\d+)/borrar/$', FamiliaBorrar.as_view(), name='familia_borrar'),					   
 					   
@@ -75,10 +76,11 @@ urlpatterns = patterns('',
     url(r'^unidades/(?P<pk>\d+)/borrar/$', UnidadesBorrar.as_view(), name='unidades_borrar'),
 
 
-	#MatrizTecnicaLct
+	#MatrizTecnicaLct o Límite de cuantificación
     url(r'^matriztecnicalct/$', MatrizTecnicaLctListar.as_view(), name='matriztecnicalct_listar'),
     url(r'^matriztecnicalct/crear/$', MatrizTecnicaLctCrear.as_view(), name='matriztecnicalct_crear'),
     url(r'^matriztecnicalct/(?P<pk>\d+)/$', MatrizTecnicaLctDetalle.as_view(), name='matriztecnicalct_detalle'),
+    url(r'^matriztecnicalct/(?P<pk>\d+)/confirmaalta$', MatrizTecnicaLctConfirmaAlta.as_view(), name='matriztecnicalct_confirma_alta'),                       
     url(r'^matriztecnicalct/(?P<pk>\d+)/modificar/$', MatrizTecnicaLctModificar.as_view(), name='matriztecnicalct_modificar'),
     url(r'^matriztecnicalct/(?P<pk>\d+)/borrar/$', MatrizTecnicaLctBorrar.as_view(), name='matriztecnicalct_borrar'),  
 			
@@ -93,6 +95,7 @@ urlpatterns = patterns('',
     url(r'^perfil/$', PerfilListar.as_view(), name='perfil_listar'),
     url(r'^perfil/crear/$', PerfilCrear.as_view(), name='perfil_crear'),
     url(r'^perfil/(?P<pk>\d+)/$', PerfilDetalle.as_view(), name='perfil_detalle'),
+	url(r'^perfil/(?P<pk>\d+)/confirmaalta$', PerfilConfirmaAlta.as_view(), name='perfil_confirma_alta'),                       
     url(r'^perfil/(?P<pk>\d+)/modificar/$', PerfilModificar.as_view(), name='perfil_modificar'),
     url(r'^perfil/(?P<pk>\d+)/borrar/$', PerfilBorrar.as_view(), name='perfil_borrar'), 
                        
@@ -100,6 +103,7 @@ urlpatterns = patterns('',
     url(r'^perfilprecio/$', PerfilPrecioListar.as_view(), name='perfilprecio_listar'),
     url(r'^perfilprecio/crear/$', PerfilPrecioCrear.as_view(), name='perfilprecio_crear'),
     url(r'^perfilprecio/(?P<pk>\d+)/$', PerfilPrecioDetalle.as_view(), name='perfilprecio_detalle'),
+	url(r'^perfilprecio/(?P<pk>\d+)/confirmaalta$', PerfilPrecioConfirmaAlta.as_view(), name='perfilprecio_confirma_alta'),                         
     url(r'^perfilprecio/(?P<pk>\d+)/modificar/$', PerfilPrecioModificar.as_view(), name='perfilprecio_modificar'),
     url(r'^perfilprecio/(?P<pk>\d+)/borrar/$', PerfilPrecioBorrar.as_view(), name='perfilprecio_borrar'),    
                        

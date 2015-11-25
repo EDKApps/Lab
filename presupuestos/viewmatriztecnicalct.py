@@ -39,7 +39,7 @@ class MatrizTecnicaLctCrear(CreateView):
     fields = matriztecnicalct_fields
 	
     def get_success_url(self):
-        return reverse('presupuestos:matriztecnicalct_detalle', kwargs={
+        return reverse('presupuestos:matriztecnicalct_confirma_alta', kwargs={
             'pk': self.object.pk,
         })
 
@@ -47,6 +47,11 @@ class MatrizTecnicaLctDetalle(DetailView):
     model = MatrizTecnicaLct
     fields = matriztecnicalct_fields
 
+class MatrizTecnicaLctConfirmaAlta(DetailView):
+    template_name = 'presupuestos/matriztecnicalct_confirm_create.html'
+    model = MatrizTecnicaLct
+    fields = matriztecnicalct_fields
+    
 class MatrizTecnicaLctModificar(UpdateView):
     model = MatrizTecnicaLct
     fields = matriztecnicalct_fields

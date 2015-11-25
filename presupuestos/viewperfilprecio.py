@@ -7,7 +7,7 @@ from django.db.models import Q #para OR en consultas
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
-perfilprecio_fields = ('nombre','matriz','perfil','tecnica','precio_perfil','fecha_precio')
+perfilprecio_fields = ('nombre','matriz','perfil','tecnica','fecha_precio')
 
 from .formperfilprecio import PerfilPrecioForm, PerfilPrecio_ParametroFormSet
 from .models import PerfilPrecio, PerfilPrecio_Parametro
@@ -38,10 +38,9 @@ class PerfilPrecioListar(ListView):
     
 class PerfilPrecioCrear(CreateView):
     model = PerfilPrecio
-    #fields = perfilprecio_fields
     form_class= PerfilPrecioForm
     def get_success_url(self):
-        return reverse('presupuestos:perfilprecio_detalle', kwargs={
+        return reverse('presupuestos:perfilprecio_confirma_alta', kwargs={
             'pk': self.object.pk,
         })
     def get(self, request, *args, **kwargs):
@@ -88,14 +87,17 @@ class PerfilPrecioCrear(CreateView):
         return self.render_to_response(
                 self.get_context_data(form=form,
                                       parametro_form = parametro_form))
-        
-        
-        
-        
+            
 class PerfilPrecioDetalle(DetailView):
     model = PerfilPrecio
     fields = perfilprecio_fields
 
+class PerfilPrecioConfirmaAlta(DetailView):
+    template_name = 'presupuestos/perfilprecio_confirm_create.html'
+    model = PerfilPrecio
+    fields = perfilprecio_fields
+
+    
 class PerfilPrecioModificar(UpdateView):
     model = PerfilPrecio
     form_class= PerfilPrecioForm
