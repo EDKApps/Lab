@@ -11,14 +11,13 @@ from .viewtecnica import TecnicaCrear, TecnicaBorrar, TecnicaDetalle, TecnicaLis
 from .viewunidades import UnidadesCrear, UnidadesBorrar, UnidadesDetalle, UnidadesListar, UnidadesModificar
 from .viewmatriztecnicalct import MatrizTecnicaLctCrear, MatrizTecnicaLctBorrar, MatrizTecnicaLctDetalle,MatrizTecnicaLctConfirmaAlta, MatrizTecnicaLctListar, MatrizTecnicaLctModificar
 from .viewparametroprecio import ParametroPrecioCrear, ParametroPrecioBorrar, ParametroPrecioDetalle, ParametroPrecioListar, ParametroPrecioModificar
-from .viewperfil import PerfilCrear, PerfilBorrar, PerfilDetalle, PerfilConfirmaAlta, PerfilListar, PerfilModificar
 from .viewperfilprecio import PerfilPrecioCrear, PerfilPrecioBorrar, PerfilPrecioDetalle, PerfilPrecioConfirmaAlta, PerfilPrecioListar, PerfilPrecioModificar
 from .viewitem import ItemCrear, ItemBorrar, ItemDetalle, ItemListar, ItemModificar
 
 urlpatterns = patterns('',
              
     #Base
-    url(r'^$', labinicio, name='lab_inicio'),                       
+    url(r'^$', PresupuestoListar.as_view(), name='lab_inicio'), #por defecto va al listar presupuestos                       
     #Clientes
     url(r'^clientes/$', ClienteListar.as_view(), name='cliente_listar'),
     url(r'^clientes/crear/$', ClienteCrear.as_view(), name='cliente_crear'),
@@ -90,14 +89,6 @@ urlpatterns = patterns('',
     url(r'^parametroprecio/(?P<pk>\d+)/$', ParametroPrecioDetalle.as_view(), name='parametroprecio_detalle'),
     url(r'^parametroprecio/(?P<pk>\d+)/modificar/$', ParametroPrecioModificar.as_view(), name='parametroprecio_modificar'),
     url(r'^parametroprecio/(?P<pk>\d+)/borrar/$', ParametroPrecioBorrar.as_view(), name='parametroprecio_borrar'),
-					   
-	#Perfil
-    url(r'^perfil/$', PerfilListar.as_view(), name='perfil_listar'),
-    url(r'^perfil/crear/$', PerfilCrear.as_view(), name='perfil_crear'),
-    url(r'^perfil/(?P<pk>\d+)/$', PerfilDetalle.as_view(), name='perfil_detalle'),
-	url(r'^perfil/(?P<pk>\d+)/confirmaalta$', PerfilConfirmaAlta.as_view(), name='perfil_confirma_alta'),                       
-    url(r'^perfil/(?P<pk>\d+)/modificar/$', PerfilModificar.as_view(), name='perfil_modificar'),
-    url(r'^perfil/(?P<pk>\d+)/borrar/$', PerfilBorrar.as_view(), name='perfil_borrar'), 
                        
     #PerfilPrecio
     url(r'^perfilprecio/$', PerfilPrecioListar.as_view(), name='perfilprecio_listar'),

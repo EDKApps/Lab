@@ -15,8 +15,7 @@
 		<th></th>
 		<th>Nombre</th>
         <th>Matriz</th>
-		<th>Perfil</th>
-		<th>Técnica</th>
+		<th>Precio</th>
 		<th>Fecha de precio</th>	  
       </tr>
     </thead>
@@ -27,8 +26,7 @@
     	<td><a href="{% url "presupuestos:perfilprecio_borrar" perfilprecio.id %}"><img src= "{% static "images/accion_borrar.png"%}" data-toggle="tooltip" data-placement="top" title="Borrar" alt= "Borrar"></a></td>
 		<td>{{ perfilprecio.nombre }}</td>
 		<td>{{ perfilprecio.matriz }}</td>
-		<td>{{ perfilprecio.perfil }}</td>
-		<td>{{ perfilprecio.tecnica }}</td>
+		<td>{{ perfilprecio.precio }}</td>
 		<td>{{ perfilprecio.fecha_precio }}</td>
 	</tr>
     {% endfor %}

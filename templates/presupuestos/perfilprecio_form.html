@@ -1,3 +1,5 @@
+{% extends "menu.html" %}
+{% block content %}
 
 <!DOCTYPE html>
 {% load staticfiles %}
@@ -46,9 +48,9 @@
                         {{ form.parametro.errors }}
                         {{ form.parametro.label_tag }}
                         {{ form.parametro }}
-                        {{ form.precio.errors }}
-                        {{ form.precio.label_tag }}
-                        {{ form.precio }}
+                        {{ form.tecnica.errors }}
+                        {{ form.tecnica.label_tag }}
+                        {{ form.tecnica }}
                     </div>
                 {% endfor %}
             </fieldset>
@@ -63,3 +65,4 @@
 </script>    
 </body>
 </html>
+{% endblock content %}

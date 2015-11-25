@@ -7,7 +7,7 @@ from .models import PerfilPrecio, PerfilPrecio_Parametro
 class PerfilPrecioForm(ModelForm):
 	class Meta:
 		model = PerfilPrecio
-		fields = ('nombre','matriz','perfil','tecnica','fecha_precio')
+		fields = ('nombre','matriz','precio','fecha_precio')
 
 class Perfil_Parametro_Form(ModelForm):
 	class Meta:

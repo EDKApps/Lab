@@ -4,7 +4,6 @@ from .models import Presupuesto, Numerador
 from .models import Tipo
 from .models import Estado
 from .models import Matriz
-from .models import Perfil
 from .models import Familia
 from .models import Parametro
 from .models import Tecnica
@@ -20,7 +19,6 @@ admin.site.register(Numerador)
 admin.site.register(Estado)
 admin.site.register(Tipo)
 admin.site.register(Matriz)
-admin.site.register(Perfil)
 admin.site.register(Familia)
 admin.site.register(Parametro)
 admin.site.register(Tecnica)
