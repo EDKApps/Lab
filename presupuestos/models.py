@@ -174,4 +174,5 @@ class Campania (models.Model):
 	descripcion = models.CharField(max_length= 100)
 	cantidad = models.IntegerField(default='0')
 	unidad_medida = models.CharField(max_length= 100, blank='true')
-	valor_unitario = models.CharField(max_length= 100, blank='true')
+	valor_unitario = models.DecimalField(max_digits=8, decimal_places=2)
+	valor_total = models.DecimalField(max_digits=8, decimal_places=2)
