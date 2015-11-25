@@ -167,8 +167,8 @@ class Item (models.Model):
 	descripcion = models.CharField(max_length= 100, blank='true')
 	matriz = models.ForeignKey(Matriz)
 	cantidadMuestra = models.IntegerField(default= 0)
-	#def __str__(self):
-	#	return self.numero
+	def __str__(self):
+		return self.descripcion
 
 class Campania (models.Model):
 	descripcion = models.CharField(max_length= 100)
