@@ -1,5 +1,4 @@
  # -- coding: utf-8 --
-	
 # $ python manage.py makemigrations
 # $ python manage.py migrate
 # $ python manage.py createsuperuser
@@ -104,7 +103,7 @@ class Tecnica (models.Model):
 	nombre_tec = models.CharField('Tecnica', max_length=100)
 	derivacion= models.CharField(max_length=100, blank='true')
 	link = models.CharField(max_length=100, blank='true')
-	observacion = models.CharField(max_length=100, blank='true')
+	observacion = models.TextField(blank='true')
 	def __str__(self):
 		return self.nombre_tec
 	
