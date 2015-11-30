@@ -162,12 +162,23 @@ class PerfilPrecio_Parametro (models.Model): # ex GrupoParametroPrecio_Parametro
 	#todo:agregar inferida de unidades y lct, que vienen de matriztecnicalct
 	
 class Item (models.Model):
+	presupuesto = models.ForeignKey(Presupuesto)
 	numero = models.IntegerField(default= 0)
 	descripcion = models.CharField(max_length= 100, blank='true')
 	matriz = models.ForeignKey(Matriz)
 	cantidadMuestra = models.IntegerField(default= 0)
 	def __str__(self):
 		return self.descripcion
+
+class Subitem_parametro (models.Model): #relacion Item-ParametroPrecio
+	item = models.ForeignKey(Item)
+	itemparametro = models.ForeignKey(ParametroPrecio)
+	cantidad = models.IntegerField(default='0')
+
+class Subitem_perfil (models.Model): #relacion Item-PerfilPrecio
+	item = models.ForeignKey(Item)
+	itemperfil = models.ForeignKey(PerfilPrecio)
+	cantidad = models.IntegerField(default='0')
 
 class Campania (models.Model):
 	descripcion = models.CharField(max_length= 100)
