@@ -1,0 +1,28 @@
+{% extends "menu.html" %}
+{% block content %}
+<h1>{{ presupuesto}}</h1>
+
+<p>Presupuesto: {{ presupuesto.cliente }}</p>
+
+<table class="table table-hover">
+<thead>
+  <tr>
+	<th>Número</th>
+	<th>Descripción</th>
+	<th>Matriz</th>
+	<th>Cantidad muestra</th>
+  </tr>
+</thead>
+<tbody>
+  {% for item in presupuesto.item_set.all %}
+  <tr>
+	  <td>{{item}}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+	
+<a href="{% url "presupuestos:presupuesto_listar"  %}">Presupuestos</a>
+{% endblock content %}
+
+

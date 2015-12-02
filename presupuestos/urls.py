@@ -13,7 +13,7 @@ from .viewmatriztecnicalct import MatrizTecnicaLctCrear, MatrizTecnicaLctBorrar,
 from .viewparametroprecio import ParametroPrecioCrear, ParametroPrecioBorrar, ParametroPrecioDetalle, ParametroPrecioListar, ParametroPrecioModificar
 from .viewperfilprecio import PerfilPrecioCrear, PerfilPrecioBorrar, PerfilPrecioDetalle, PerfilPrecioConfirmaAlta, PerfilPrecioListar, PerfilPrecioModificar
 from .viewitem import ItemCrear, ItemBorrar, ItemDetalle, ItemListar, ItemModificar
-
+from .viewpresupuestoitem import PresupuestoItemModificar, PresupuestoItemDetalle
 urlpatterns = patterns('',
              
     #Base
@@ -104,6 +104,8 @@ urlpatterns = patterns('',
     url(r'^item/(?P<pk>\d+)/$', ItemDetalle.as_view(), name='item_detalle'),
     url(r'^item/(?P<pk>\d+)/modificar/$', ItemModificar.as_view(), name='item_modificar'),
     url(r'^item/(?P<pk>\d+)/borrar/$', ItemBorrar.as_view(), name='item_borrar'),
-					  
-					  
+	
+    #relacion presupuesto-item
+    url(r'^presupuestoitem/(?P<pk>\d+)/$', PresupuestoItemDetalle.as_view(), name='presupuestoitem_detalle'),
+    url(r'^presupuestoitem/(?P<pk>\d+)/modificar/$', PresupuestoItemModificar.as_view(), name='presupuestoitem_modificar'),
 )
