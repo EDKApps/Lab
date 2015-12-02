@@ -185,4 +185,16 @@ class Campania (models.Model):
 	cantidad = models.IntegerField(default='0')
 	unidad_medida = models.CharField(max_length= 100, blank='true')
 	valor_unitario = models.DecimalField(max_digits=8, decimal_places=2)
-	valor_total = models.DecimalField(max_digits=8, decimal_places=2)
+	valor_total = models.DecimalField(max_digits=8, decimal_places=2, null='true', blank='true', default='0')
+	descuento = models.DecimalField(max_digits=5, decimal_places=2, null='true', blank='true', default='0')
+	def __str__(self):
+		return self.descripcion
+	def save(self, *args, **kwargs):
+		#completa valor_total
+		total = self.valor_unitario * self.cantidad	
+		if self.descuento != 0:
+			total=total * (100-self.descuento)/100
+		self.valor_total = total
+
+		# Call the "real" save() method.
+		super(Campania, self).save(*args, **kwargs) 

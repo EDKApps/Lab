@@ -12,6 +12,7 @@ from .models import MatrizTecnicaLct
 from .models import ParametroPrecio 
 from .models import PerfilPrecio
 from .models import PerfilPrecio_Parametro
+from .models import Campania
 
 admin.site.register(Cliente)
 admin.site.register(Presupuesto)
@@ -27,5 +28,5 @@ admin.site.register(MatrizTecnicaLct)
 admin.site.register(ParametroPrecio)
 admin.site.register(PerfilPrecio)
 admin.site.register(PerfilPrecio_Parametro)
-
+admin.site.register(Campania)
 
