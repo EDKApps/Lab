@@ -95,7 +95,7 @@ class Familia (models.Model): # también llamada Grupo
 	
 class Parametro (models.Model):
 	nombre_par = models.CharField('Parametro', max_length=100)
-	familia = models.ForeignKey(Familia, blank='true', null='true')
+	familia = models.ForeignKey(Familia, blank='true', null='true',on_delete= models.PROTECT )
 	def __str__(self):
 		return self.nombre_par
 	
