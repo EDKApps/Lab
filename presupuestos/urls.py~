@@ -5,20 +5,19 @@ from .viewpresupuesto import PresupuestoCrear, PresupuestoBorrar, PresupuestoDet
 from .viewmuestra import MuestraListar
 from .viewordendetrabajo import OrdenDeTrabajoListar
 from .viewmatriz import MatrizCrear, MatrizBorrar, MatrizDetalle, MatrizListar, MatrizModificar
-from .viewfamilia import FamiliaCrear, FamiliaBorrar, FamiliaDetalle, FamiliaListar, FamiliaModificar
+from .viewfamilia import FamiliaCrear, FamiliaBorrar, FamiliaDetalle, FamiliaConfirmaAlta, FamiliaListar, FamiliaModificar
 from .viewparametro import ParametroCrear, ParametroBorrar, ParametroDetalle, ParametroListar, ParametroModificar
 from .viewtecnica import TecnicaCrear, TecnicaBorrar, TecnicaDetalle, TecnicaListar, TecnicaModificar
 from .viewunidades import UnidadesCrear, UnidadesBorrar, UnidadesDetalle, UnidadesListar, UnidadesModificar
-from .viewmatrizTecnicaLct import MatrizTecnicaLctCrear, MatrizTecnicaLctBorrar, MatrizTecnicaLctDetalle, MatrizTecnicaLctListar, MatrizTecnicaLctModificar
-#from .viewparametroprecio import ParametroPrecioCrear, ParametroPrecioBorrar, ParametroPrecioDetalle, ParametroPrecioListar, ParametroPrecioModificar
-#from .viewgrupo_parametro import Grupo_ParametroCrear, Grupo_ParametroBorrar, Grupo_ParametroDetalle, Grupo_ParametroListar, Grupo_ParametroModificar
-#from .viewgrupoparametroprecio import GrupoParametroPrecioCrear, GrupoParametroPrecioBorrar, GrupoParametroPrecioDetalle, GrupoParametroPrecioListar, GrupoParametroPrecioModificar
-#from .viewgrupoparametroprecio_parametro import GrupoParametroPrecio_ParametroCrear, GrupoParametroPrecio_ParametroBorrar, GrupoParametroPrecio_ParametroDetalle, GrupoParametroPrecio_ParametroListar, GrupoParametroPrecio_ParametroModificar
-
+from .viewmatriztecnicalct import MatrizTecnicaLctCrear, MatrizTecnicaLctBorrar, MatrizTecnicaLctDetalle,MatrizTecnicaLctConfirmaAlta, MatrizTecnicaLctListar, MatrizTecnicaLctModificar
+from .viewparametroprecio import ParametroPrecioCrear, ParametroPrecioBorrar, ParametroPrecioDetalle, ParametroPrecioListar, ParametroPrecioModificar
+from .viewperfilprecio import PerfilPrecioCrear, PerfilPrecioBorrar, PerfilPrecioDetalle, PerfilPrecioConfirmaAlta, PerfilPrecioListar, PerfilPrecioModificar
+from .viewitem import ItemCrear, ItemBorrar, ItemDetalle, ItemListar, ItemModificar
+from .viewpresupuestoitem import PresupuestoItemModificar, PresupuestoItemDetalle
 urlpatterns = patterns('',
              
     #Base
-    url(r'^$', labinicio, name='lab_inicio'),                       
+    url(r'^$', PresupuestoListar.as_view(), name='lab_inicio'), #por defecto va al listar presupuestos                       
     #Clientes
     url(r'^clientes/$', ClienteListar.as_view(), name='cliente_listar'),
     url(r'^clientes/crear/$', ClienteCrear.as_view(), name='cliente_crear'),
@@ -50,6 +49,7 @@ urlpatterns = patterns('',
     url(r'^familia/$', FamiliaListar.as_view(), name='familia_listar'),
     url(r'^familia/crear/$', FamiliaCrear.as_view(), name='familia_crear'),
     url(r'^familia/(?P<pk>\d+)/$', FamiliaDetalle.as_view(), name='familia_detalle'),
+	url(r'^familia/(?P<pk>\d+)/confirmaalta$', FamiliaConfirmaAlta.as_view(), name='familia_confirma_alta'),
     url(r'^familia/(?P<pk>\d+)/modificar/$', FamiliaModificar.as_view(), name='familia_modificar'),
     url(r'^familia/(?P<pk>\d+)/borrar/$', FamiliaBorrar.as_view(), name='familia_borrar'),					   
 					   
@@ -74,43 +74,42 @@ urlpatterns = patterns('',
     url(r'^unidades/(?P<pk>\d+)/modificar/$', UnidadesModificar.as_view(), name='unidades_modificar'),
     url(r'^unidades/(?P<pk>\d+)/borrar/$', UnidadesBorrar.as_view(), name='unidades_borrar'),
 
-    #MatrizTecnicaLct
+
+	#MatrizTecnicaLct o Límite de cuantificación
     url(r'^matriztecnicalct/$', MatrizTecnicaLctListar.as_view(), name='matriztecnicalct_listar'),
     url(r'^matriztecnicalct/crear/$', MatrizTecnicaLctCrear.as_view(), name='matriztecnicalct_crear'),
     url(r'^matriztecnicalct/(?P<pk>\d+)/$', MatrizTecnicaLctDetalle.as_view(), name='matriztecnicalct_detalle'),
+    url(r'^matriztecnicalct/(?P<pk>\d+)/confirmaalta$', MatrizTecnicaLctConfirmaAlta.as_view(), name='matriztecnicalct_confirma_alta'),                       
     url(r'^matriztecnicalct/(?P<pk>\d+)/modificar/$', MatrizTecnicaLctModificar.as_view(), name='matriztecnicalct_modificar'),
-    url(r'^matriztecnicalct/(?P<pk>\d+)/borrar/$', MatrizTecnicaLctBorrar.as_view(), name='matriztecnicalct_borrar'),    
-)
-
-
-"""
-			   
+    url(r'^matriztecnicalct/(?P<pk>\d+)/borrar/$', MatrizTecnicaLctBorrar.as_view(), name='matriztecnicalct_borrar'),  
+			
 	#ParametroPrecio
     url(r'^parametroprecio/$', ParametroPrecioListar.as_view(), name='parametroprecio_listar'),
     url(r'^parametroprecio/crear/$', ParametroPrecioCrear.as_view(), name='parametroprecio_crear'),
     url(r'^parametroprecio/(?P<pk>\d+)/$', ParametroPrecioDetalle.as_view(), name='parametroprecio_detalle'),
     url(r'^parametroprecio/(?P<pk>\d+)/modificar/$', ParametroPrecioModificar.as_view(), name='parametroprecio_modificar'),
-    url(r'^parametroprecio/(?P<pk>\d+)/borrar/$', ParametroPrecioBorrar.as_view(), name='parametroprecio_borrar'),    
-
-    #Grupo_Parametro
-    url(r'^grupo_parametro/$', Grupo_ParametroListar.as_view(), name='grupo_parametro_listar'),
-    url(r'^grupo_parametro/crear/$', Grupo_ParametroCrear.as_view(), name='grupo_parametro_crear'),
-    url(r'^grupo_parametro/(?P<pk>\d+)/$', Grupo_ParametroDetalle.as_view(), name='grupo_parametro_detalle'),
-    url(r'^grupo_parametro/(?P<pk>\d+)/modificar/$', Grupo_ParametroModificar.as_view(), name='grupo_parametro_modificar'),
-    url(r'^grupo_parametro/(?P<pk>\d+)/borrar/$', Grupo_ParametroBorrar.as_view(), name='grupo_parametro_borrar'),    
+    url(r'^parametroprecio/(?P<pk>\d+)/borrar/$', ParametroPrecioBorrar.as_view(), name='parametroprecio_borrar'),
                        
-    #GrupoParametroPrecio
-    url(r'^grupoparametroprecio/$', GrupoParametroPrecioListar.as_view(), name='grupoparametroprecio_listar'),
-    url(r'^grupoparametroprecio/crear/$', GrupoParametroPrecioCrear.as_view(), name='grupoparametroprecio_crear'),
-    url(r'^grupoparametroprecio/(?P<pk>\d+)/$', GrupoParametroPrecioDetalle.as_view(), name='grupoparametroprecio_detalle'),
-    url(r'^grupoparametroprecio/(?P<pk>\d+)/modificar/$', GrupoParametroPrecioModificar.as_view(), name='grupoparametroprecio_modificar'),
-    url(r'^grupoparametroprecio/(?P<pk>\d+)/borrar/$', GrupoParametroPrecioBorrar.as_view(), name='grupoparametroprecio_borrar'),    
+    #PerfilPrecio
+    url(r'^perfilprecio/$', PerfilPrecioListar.as_view(), name='perfilprecio_listar'),
+    url(r'^perfilprecio/crear/$', PerfilPrecioCrear.as_view(), name='perfilprecio_crear'),
+    url(r'^perfilprecio/(?P<pk>\d+)/$', PerfilPrecioDetalle.as_view(), name='perfilprecio_detalle'),
+	url(r'^perfilprecio/(?P<pk>\d+)/confirmaalta$', PerfilPrecioConfirmaAlta.as_view(), name='perfilprecio_confirma_alta'),                         
+    url(r'^perfilprecio/(?P<pk>\d+)/modificar/$', PerfilPrecioModificar.as_view(), name='perfilprecio_modificar'),
+    url(r'^perfilprecio/(?P<pk>\d+)/borrar/$', PerfilPrecioBorrar.as_view(), name='perfilprecio_borrar'),    
+                       
+	#Item
+    url(r'^item/$', ItemListar.as_view(), name='item_listar'),
+    url(r'^item/crear/$', ItemCrear.as_view(), name='item_crear'),
+    url(r'^item/(?P<pk>\d+)/$', ItemDetalle.as_view(), name='item_detalle'),
+    url(r'^item/(?P<pk>\d+)/modificar/$', ItemModificar.as_view(), name='item_modificar'),
+    url(r'^item/(?P<pk>\d+)/borrar/$', ItemBorrar.as_view(), name='item_borrar'),
+	
+    #relacion presupuesto-item
+    url(r'^presupuestoitem/(?P<pk>\d+)/$', PresupuestoItemDetalle.as_view(), name='presupuestoitem_detalle'),
+    url(r'^presupuestoitem/(?P<pk>\d+)/modificar/$', PresupuestoItemModificar.as_view(), name='presupuestoitem_modificar'),
 
-    #GrupoParametroPrecio_Parametro
-    url(r'^grupoparametroprecio_parametro/$', GrupoParametroPrecioListar.as_view(), name='grupoparametroprecio_parametro_listar'),
-    url(r'^grupoparametroprecio_parametro/crear/$', GrupoParametroPrecioCrear.as_view(), name='grupoparametroprecio_parametro_crear'),
-    url(r'^grupoparametroprecio_parametro/(?P<pk>\d+)/$', GrupoParametroPrecioDetalle.as_view(), name='grupoparametroprecio_parametro_detalle'),
-    url(r'^grupoparametroprecio_parametro/(?P<pk>\d+)/modificar/$', GrupoParametroPrecioModificar.as_view(), name='grupoparametroprecio_parametro_modificar'),
-    url(r'^grupoparametroprecio_parametro/(?P<pk>\d+)/borrar/$', GrupoParametroPrecioBorrar.as_view(), name='grupoparametroprecio_parametro_borrar'),    
-
-"""
+    #relacion presupuesto-campania
+    #url(r'^presupuestoitem/(?P<pk>\d+)/$', PresupuestoItemDetalle.as_view(), name='presupuestoitem_detalle'),
+    url(r'^presupuestocampania/(?P<pk>\d+)/modificar/$', PresupuestoCampaniaModificar.as_view(), name='presupuestocampania_modificar'),
+)

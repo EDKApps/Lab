@@ -14,6 +14,8 @@ from .viewparametroprecio import ParametroPrecioCrear, ParametroPrecioBorrar, Pa
 from .viewperfilprecio import PerfilPrecioCrear, PerfilPrecioBorrar, PerfilPrecioDetalle, PerfilPrecioConfirmaAlta, PerfilPrecioListar, PerfilPrecioModificar
 from .viewitem import ItemCrear, ItemBorrar, ItemDetalle, ItemListar, ItemModificar
 from .viewpresupuestoitem import PresupuestoItemModificar, PresupuestoItemDetalle
+from .viewpresupuestocampania import PresupuestoCampaniaModificar
+
 urlpatterns = patterns('',
              
     #Base
@@ -108,4 +110,8 @@ urlpatterns = patterns('',
     #relacion presupuesto-item
     url(r'^presupuestoitem/(?P<pk>\d+)/$', PresupuestoItemDetalle.as_view(), name='presupuestoitem_detalle'),
     url(r'^presupuestoitem/(?P<pk>\d+)/modificar/$', PresupuestoItemModificar.as_view(), name='presupuestoitem_modificar'),
+
+    #relacion presupuesto-campania
+    #url(r'^presupuestoitem/(?P<pk>\d+)/$', PresupuestoItemDetalle.as_view(), name='presupuestoitem_detalle'),
+    url(r'^presupuestocampania/(?P<pk>\d+)/modificar/$', PresupuestoCampaniaModificar.as_view(), name='presupuestocampania_modificar'),
 )

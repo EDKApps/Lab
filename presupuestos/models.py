@@ -181,6 +181,8 @@ class Subitem_perfil (models.Model): #relacion Item-PerfilPrecio
 	cantidad = models.IntegerField(default='0')
 
 class Campania (models.Model):
+	presupuesto = models.ForeignKey(Presupuesto)
+	numero = models.IntegerField(default= 0)
 	descripcion = models.CharField(max_length= 100)
 	cantidad = models.IntegerField(default='0')
 	unidad_medida = models.CharField(max_length= 100, blank='true')

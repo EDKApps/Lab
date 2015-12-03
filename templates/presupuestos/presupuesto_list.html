@@ -16,6 +16,7 @@
 		<th></th>
 		<th></th>  
 		<th></th>  
+		<th></th>  
 		<th>Referencia clave</th>
 		<th>Cliente</th>
         	<th>Contacto</th>
@@ -34,6 +35,7 @@
 		  
 		<td><a href="{% url "presupuestos:presupuestoitem_modificar" presupuesto.id %}"><img src= "{% static "images/accion_item.png"%}" data-toggle="tooltip" data-placement="top" title="Items" alt= "Items"></a></td>		   
 		<td><a href="{% url "presupuestos:presupuestoitem_detalle" presupuesto.id %}"><img src= "{% static "images/accion_subitem.png"%}" data-toggle="tooltip" data-placement="top" title="Subitems" alt= "Subitems"></a></td>		   
+		<td><a href="{% url "presupuestos:presupuestocampania_modificar" presupuesto.id %}"><img src= "{% static "images/accion_item.png"%}" data-toggle="tooltip" data-placement="top" title="Muestreo" alt= "Muestreo"></a></td>		   
        	<td>{{presupuesto.referencia_clave}} {{presupuesto.referencia}}</td>
 		<td>{{presupuesto.cliente.empresa}}</td>		  
         <td>{{presupuesto.cliente.contacto}}</td>
