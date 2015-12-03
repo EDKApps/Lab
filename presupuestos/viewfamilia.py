@@ -3,13 +3,15 @@ from django import forms
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.db.models import Q #para OR en consultas
+from django.db.models.deletion import ProtectedError
 
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
+import json
+
 familia_fields = ('nombre',)
 
 from .models import Familia
-
 
 class FamiliaListar(ListView):
     model = Familia
@@ -63,3 +65,12 @@ class FamiliaBorrar(DeleteView):
     model = Familia
     success_url = reverse_lazy('presupuestos:familia_listar')
     fields = familia_fields
+    
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        try:
+            self.object.delete()
+            data = {'success':'ok'}
+        except ProtectedError:
+            data = {'success':'violation_protected'}
+        #return HttpResponse(json.dumps(data),mimetype="application/json")    
