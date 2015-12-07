@@ -51,8 +51,6 @@
                         {{ form.tecnica.errors }}
                         {{ form.tecnica.label_tag }}
                         {{ form.tecnica }}
-                        {{ form.texto.label_tag }}
-                        {{ form.texto }}
                     </div>
                 {% endfor %}
             </fieldset>

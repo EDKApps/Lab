@@ -54,12 +54,11 @@
                   </tr>
                 </thead>
                 <tbody>	     
-                    
-                {% for form in item_form %}
-                    
-                    <!--<div class="inline {{ item_form.prefix }}">-->
-                        <tr class="inline {{ item_form.prefix }}">
-                            
+                {% for form in campania_form %}
+
+                    <!--<div class="inline {{ campania_form.prefix }}">-->
+                        <tr class="inline {{ campania_form.prefix }}">
+                           
                         <td>
                             {{ form.id }}
 						{% if form.instance.pk %}{{ form.DELETE }}{% endif %}
@@ -94,7 +93,7 @@
                     <!--</div>-->
                 {% endfor %}
                 </tbody>
-                </table>    
+                </table>
             </fieldset>
             <input type="submit" value="Confirmar" class="submit" />
         </form>

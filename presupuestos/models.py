@@ -157,8 +157,8 @@ class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 class PerfilPrecio_Parametro (models.Model): # ex GrupoParametroPrecio_Parametro
 	perfilPrecio = models.ForeignKey(PerfilPrecio)
 	parametro = models.ForeignKey(Parametro)
-	tecnica = models.ForeignKey(Tecnica)	
-	
+	tecnica = models.ForeignKey(Tecnica)
+
 	#todo:agregar inferida de unidades y lct, que vienen de matriztecnicalct
 	
 class Item (models.Model):
@@ -184,11 +184,11 @@ class Campania (models.Model):
 	presupuesto = models.ForeignKey(Presupuesto)
 	numero = models.IntegerField(default= 0)
 	descripcion = models.CharField(max_length= 100)
-	cantidad = models.IntegerField(default='0')
+	cantidad = models.IntegerField(default= 0)
 	unidad_medida = models.CharField(max_length= 100, blank='true')
-	valor_unitario = models.DecimalField(max_digits=8, decimal_places=2)
-	valor_total = models.DecimalField(max_digits=8, decimal_places=2, null='true', blank='true', default='0')
-	descuento = models.DecimalField(max_digits=5, decimal_places=2, null='true', blank='true', default='0')
+	valor_unitario = models.DecimalField(max_digits=8, decimal_places=2, default= 0)
+	valor_total = models.DecimalField(max_digits=8, decimal_places=2, null='true', blank='true', default=0)
+	descuento = models.DecimalField(max_digits=5, decimal_places=2, null='true', blank='true', default=0)
 	def __str__(self):
 		return self.descripcion
 	def save(self, *args, **kwargs):
