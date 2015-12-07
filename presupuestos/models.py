@@ -46,8 +46,8 @@ class Presupuesto (models.Model):
 	tipo = models.ForeignKey(Tipo)
 	estado = models.ForeignKey(Estado)
 	observacion = models.CharField(max_length=100, blank='true')
-	"""def __str__(self):
-		return self.fecha_de_solicitud"""
+	descuento = models.DecimalField(max_digits=5, decimal_places=2, null='true', blank='true', default=0)
+
 	def __str__(self):
 		return self.referencia
 	

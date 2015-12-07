@@ -5,8 +5,8 @@ from django.forms.extras.widgets import SelectDateWidget
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 from django.db.models import Q #para OR en consultas
 #En el form de alta excluyo la referencia (automática)
-presupuesto_fields_crear = ('cliente','referencia_clave', 'tipo', 'fecha_solicitud', 'fecha_vencimiento', 'fecha_envio', 'fecha_aprobacion', 'descripcion', 'estado', 'observacion')
-presupuesto_fields_modif = ('cliente','referencia_clave', 'referencia', 'tipo', 'fecha_solicitud', 'fecha_vencimiento', 'fecha_envio', 'fecha_aprobacion', 'descripcion', 'estado', 'observacion')
+presupuesto_fields_crear = ('cliente','referencia_clave', 'tipo', 'fecha_solicitud', 'fecha_vencimiento', 'fecha_envio', 'fecha_aprobacion', 'descripcion', 'estado', 'observacion', 'descuento')
+presupuesto_fields_modif = ('cliente','referencia_clave', 'referencia', 'tipo', 'fecha_solicitud', 'fecha_vencimiento', 'fecha_envio', 'fecha_aprobacion', 'descripcion', 'estado', 'observacion', 'descuento')
 
 fecha_solicitud_anios = ('2015', '2016', '2017')
 from .models import Presupuesto
