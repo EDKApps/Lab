@@ -158,7 +158,7 @@ class PerfilPrecio_Parametro (models.Model): # ex GrupoParametroPrecio_Parametro
 	perfilPrecio = models.ForeignKey(PerfilPrecio, on_delete= models.PROTECT)
 	parametro = models.ForeignKey(Parametro, on_delete= models.PROTECT)
 	tecnica = models.ForeignKey(Tecnica, on_delete= models.PROTECT)	
-	
+
 	#todo:agregar inferida de unidades y lct, que vienen de matriztecnicalct
 	
 class Item (models.Model): #si se elimina el presupuesto. se elimina el Item, junto con sus subitems
@@ -184,11 +184,11 @@ class Campania (models.Model):
 	presupuesto = models.ForeignKey(Presupuesto, on_delete= models.PROTECT)
 	numero = models.IntegerField(default= 0)
 	descripcion = models.CharField(max_length= 100)
-	cantidad = models.IntegerField(default='0')
+	cantidad = models.IntegerField(default= 0)
 	unidad_medida = models.CharField(max_length= 100, blank='true')
-	valor_unitario = models.DecimalField(max_digits=8, decimal_places=2)
-	valor_total = models.DecimalField(max_digits=8, decimal_places=2, null='true', blank='true', default='0')
-	descuento = models.DecimalField(max_digits=5, decimal_places=2, null='true', blank='true', default='0')
+	valor_unitario = models.DecimalField(max_digits=8, decimal_places=2, default= 0)
+	valor_total = models.DecimalField(max_digits=8, decimal_places=2, null='true', blank='true', default=0)
+	descuento = models.DecimalField(max_digits=5, decimal_places=2, null='true', blank='true', default=0)
 	def __str__(self):
 		return self.descripcion
 	def save(self, *args, **kwargs):

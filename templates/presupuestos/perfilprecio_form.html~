@@ -48,15 +48,9 @@
                         {{ form.parametro.errors }}
                         {{ form.parametro.label_tag }}
                         {{ form.parametro }}
-                        
-                        {{ form.parametro.familia.label_tag}}
-                        {{ form.parametro.familia}}
-                        
                         {{ form.tecnica.errors }}
                         {{ form.tecnica.label_tag }}
                         {{ form.tecnica }}
-                        {{ form.texto.label_tag }}
-                        {{ form.texto }}
                     </div>
                 {% endfor %}
             </fieldset>

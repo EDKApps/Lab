@@ -46,7 +46,7 @@
                   <tr>
                     <th>Número</th>
                     <th>Descripción</th>
-                    <th>Cantidad muestra</th>
+                    <th>Cantidad</th>
                     <th>Unidad de medida</th>
                     <th>Valor Unit.</th>
                     <th>Descuento</th>
@@ -54,12 +54,11 @@
                   </tr>
                 </thead>
                 <tbody>	     
-                    
                 {% for form in campania_form %}
-                    
+
                     <!--<div class="inline {{ campania_form.prefix }}">-->
                         <tr class="inline {{ campania_form.prefix }}">
-                            
+                           
                         <td>
                             {{ form.id }}
 						{% if form.instance.pk %}{{ form.DELETE }}{% endif %}
@@ -94,7 +93,7 @@
                     <!--</div>-->
                 {% endfor %}
                 </tbody>
-                </table>    
+                </table>
             </fieldset>
             <input type="submit" value="Confirmar" class="submit" />
         </form>
