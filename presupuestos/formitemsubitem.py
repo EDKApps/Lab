@@ -30,5 +30,5 @@ class Subitem_perfil_Form(ModelForm):
 			instance.save()
 		return instance 
 	
-Subitem_parametroFormSet = inlineformset_factory(Item, Subitem_presupuesto, fields='__all__')
+Subitem_parametroFormSet = inlineformset_factory(Item, Subitem_parametro, fields='__all__')
 Subitem_perfilFormSet = inlineformset_factory(Item, Subitem_perfil, fields='__all__')

@@ -15,6 +15,7 @@ from .viewperfilprecio import PerfilPrecioCrear, PerfilPrecioBorrar, PerfilPreci
 from .viewitem import ItemCrear, ItemBorrar, ItemDetalle, ItemListar, ItemModificar
 from .viewpresupuestoitem import PresupuestoItemModificar, PresupuestoItemDetalle
 from .viewpresupuestocampania import PresupuestoCampaniaModificar
+from .viewitemsubitem import ItemSubitemModificar
 
 urlpatterns = patterns('',
              
@@ -114,4 +115,7 @@ urlpatterns = patterns('',
     #relacion presupuesto-campania
     #url(r'^presupuestoitem/(?P<pk>\d+)/$', PresupuestoItemDetalle.as_view(), name='presupuestoitem_detalle'),
     url(r'^presupuestocampania/(?P<pk>\d+)/modificar/$', PresupuestoCampaniaModificar.as_view(), name='presupuestocampania_modificar'),
+    
+    #relacion item-subitem (parámetro y perfil)
+    url(r'^itemsubitem/(?P<pk>\d+)/modificar/$', ItemSubitemModificar.as_view(), name='itemsubitem_modificar'),
 )
