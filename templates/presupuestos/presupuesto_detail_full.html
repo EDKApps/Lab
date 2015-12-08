@@ -17,7 +17,7 @@
     <p>Descripcion: {{presupuesto.descripcion}}</p>
     <p>Estado: {{presupuesto.estado}}</p>
     <p>Observacion: {{presupuesto.observacion}}</p>
-	<p>Descuento (%): </p>
+	<p>Descuento (%): {{presupuesto.descuento}}</p>
 	<hr/>
   </thead>
   <tbody>
@@ -26,6 +26,7 @@
 	<p><strong>Matriz:</strong> {{item.matriz}} </p>
 	<p><strong>Descripcion:</strong> {{item.descripcion}}</p>
 	<p><strong>Cantidad de muestras:</strong> {{item.cantidadMuestra}}</p>
+	<p><strong>Descuento:</strong> {{presupuesto.descuento}} %</p>
 	<hr/>
 	{% endfor %}
   </tbody>
@@ -53,7 +54,7 @@
 	<td>{{campania.cantidad}}</td>
 	<td>{{campania.unidad_medida}}</td>
 	<td>{{campania.valor_unitario}}</td>
-	<td>{{campania.descuento}}</td>
+	<td>{{campania.descuento}}%</td>
 	<td>{{campania.valor_total}}</td>
   </tr>
   {% endfor %}
@@ -66,7 +67,7 @@
   <br/>
   <p><strong>Presupuesto numero: </strong>{{presupuesto.referencia}}</p> 
   <p><strong>Total: </strong></p>
-  <p><strong>Descuento: </strong></p> 
+  <p><strong>Descuento: </strong>{{presupuesto.descuento}}%</p> 
   <p><strong>Total con descuento: </strong></p>
   <hr/>
 
