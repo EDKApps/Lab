@@ -120,7 +120,7 @@ urlpatterns = patterns('',
     url(r'^itemsubitem/(?P<pk>\d+)/modificar/$', ItemSubitemModificar.as_view(), name='itemsubitem_modificar'),
                        
     #multiselección de parámetros
-    url(r'^promtparametros/(?P<iditem>\d+)/$', views.add_page, name='category'),
+    #url(r'^promtparametros/(?P<iditem>\d+)/$', views.add_page, name='category'),
     #multiseleccion de perfiles
     
 )
