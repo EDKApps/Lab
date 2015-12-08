@@ -188,7 +188,7 @@ class Campania (models.Model):
 	unidad_medida = models.CharField(max_length= 100, blank='true')
 	valor_unitario = models.DecimalField(max_digits=8, decimal_places=2, default= 0)
 	valor_total = models.DecimalField(max_digits=8, decimal_places=2, null='true', blank='true', default=0)
-	descuento = models.DecimalField(max_digits=5, decimal_places=2, null='true', blank='true', default=0)
+	descuento = models.DecimalField('descuento (%)', max_digits=5, decimal_places=2, null='true', blank='true', default=0)
 	def __str__(self):
 		return self.descripcion
 	def save(self, *args, **kwargs):
