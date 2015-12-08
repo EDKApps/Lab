@@ -145,6 +145,8 @@ class ParametroPrecio  (models.Model):
 			return ''
 		else:
 			return mt.unidad
+	def __str__(self):
+		return str(self.parametro)+', '+self.tecnica.nombre_tec
 	
 class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 	nombre = models.CharField( max_length=100)
@@ -173,6 +175,7 @@ class Item (models.Model): #si se elimina el presupuesto. se elimina el Item, ju
 class Subitem_parametro (models.Model): #relacion Item-ParametroPrecio
 	item = models.ForeignKey(Item)
 	itemparametro = models.ForeignKey(ParametroPrecio)
+
 
 class Subitem_perfil (models.Model): #relacion Item-PerfilPrecio
 	item = models.ForeignKey(Item)
