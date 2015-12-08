@@ -1,0 +1,80 @@
+{% extends "menu.html" %}
+{% block content %}
+
+<h1>Presupuesto: {{ presupuesto.referencia }}</h1>
+
+<table class="table table-hover">
+  <thead>
+	<p>Cliente: {{presupuesto.cliente.empresa}}</p>
+    <p>Contacto: {{presupuesto.cliente}}</p>
+    <p>Referencia clave: {{presupuesto.referencia_clave}}</p>
+    <p>Referencia: {{presupuesto.referencia}}</p>
+    <p>Tipo: {{presupuesto.tipo}}</p>
+    <p>Fecha de solicitud: {{presupuesto.fecha_solicitud}}</p>
+    <p>Fecha de vencimiento: {{presupuesto.fecha_vencimiento}}</p>
+    <p>Fecha de envio: {{presupuesto.fecha_envio}}</p>
+    <p>Fecha de aprobacion: {{presupuesto.fecha_aprobacion}}</p>
+    <p>Descripcion: {{presupuesto.descripcion}}</p>
+    <p>Estado: {{presupuesto.estado}}</p>
+    <p>Observacion: {{presupuesto.observacion}}</p>
+	<p>Descuento (%): {{presupuesto.descuento}}</p>
+	<hr/>
+  </thead>
+  <tbody>
+	{% for item in presupuesto.item_set.all %}
+    <p><strong>Item</strong> {{item.numero}} </p>
+	<p><strong>Matriz:</strong> {{item.matriz}} </p>
+	<p><strong>Descripcion:</strong> {{item.descripcion}}</p>
+	<p><strong>Cantidad de muestras:</strong> {{item.cantidadMuestra}}</p>
+	<p><strong>Descuento:</strong> {{presupuesto.descuento}} %</p>
+	<hr/>
+	{% endfor %}
+  </tbody>
+	
+  </table>
+  <br />
+<table class="table table-hover">
+  <thead>
+  <p><strong>Muestreo: </strong></p>
+  <tr>
+	  <td>Numero</td>
+	  <td>Descripcion</td>
+	  <td>Cantidad</td>
+	  <td>Unidad de medida</td>
+	  <td>Valor unitario</td>
+	  <td>Descuento</td>
+	  <td>Valor total</td>
+  </tr>
+  </thead>
+  <tbody>
+  {% for campania in presupuesto.campania_set.all %}
+  <tr>
+    <td>{{campania.numero}}</td>
+	<td>{{campania.descripcion}}</td>
+	<td>{{campania.cantidad}}</td>
+	<td>{{campania.unidad_medida}}</td>
+	<td>{{campania.valor_unitario}}</td>
+	<td>{{campania.descuento}}%</td>
+	<td>{{campania.valor_total}}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+  <hr />
+
+  <h2>Resumen del presupuesto</h2>
+  <p><u><strong>Total General: </strong></u></p>
+  <br/>
+  <p><strong>Presupuesto numero: </strong>{{presupuesto.referencia}}</p> 
+  <p><strong>Total: </strong></p>
+  <p><strong>Descuento: </strong>{{presupuesto.descuento}}%</p> 
+  <p><strong>Total con descuento: </strong></p>
+  <hr/>
+
+  <h2>Condiciones generales y notas tecnicas</h2>
+  <br/>
+  <p><strong>Condiciones comerciales</strong></p>
+  <p><strong>Aclaraciones tecnicas</strong></p>
+
+<a href="{% url "presupuestos:presupuesto_listar"  %}">Presupuestos</a>
+{% endblock content %}

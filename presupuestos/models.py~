@@ -35,7 +35,7 @@ class Estado (models.Model):
 	
 
 class Presupuesto (models.Model):
-	cliente = models.ForeignKey(Cliente)
+	cliente = models.ForeignKey(Cliente, on_delete= models.PROTECT)
 	referencia_clave = models.CharField(max_length=100, blank='true',default='S-P')
 	referencia = models.CharField(max_length=20,blank='true') #autoincremental
 	fecha_solicitud = models.DateField('fecha de solicitud', default=date.today)
@@ -43,11 +43,11 @@ class Presupuesto (models.Model):
 	fecha_envio = models.DateField('fecha de envio', blank='true', null='true')
 	fecha_aprobacion = models.DateField('fecha de aprobacion', blank='true', null='true')
 	descripcion = models.CharField(max_length=100)
-	tipo = models.ForeignKey(Tipo)
-	estado = models.ForeignKey(Estado)
+	tipo = models.ForeignKey(Tipo,on_delete= models.PROTECT)
+	estado = models.ForeignKey(Estado,on_delete= models.PROTECT)
 	observacion = models.CharField(max_length=100, blank='true')
-	"""def __str__(self):
-		return self.fecha_de_solicitud"""
+	descuento = models.DecimalField('descuento global (%)', max_digits=5, decimal_places=2, null='true', blank='true', default=0)
+
 	def __str__(self):
 		return self.referencia
 	
@@ -113,19 +113,19 @@ class Unidades (models.Model):
 		return self.nombre_unidad
 
 class MatrizTecnicaLct (models.Model):
-	matriz = models.ForeignKey(Matriz)
-	parametro = models.ForeignKey(Parametro)
-	tecnica = models.ForeignKey(Tecnica)
+	matriz = models.ForeignKey(Matriz, on_delete= models.PROTECT)
+	parametro = models.ForeignKey(Parametro, on_delete= models.PROTECT)
+	tecnica = models.ForeignKey(Tecnica, on_delete= models.PROTECT)
 	lct = models.DecimalField(max_digits=10, decimal_places=6)
-	unidad = models.ForeignKey(Unidades)
+	unidad = models.ForeignKey(Unidades, on_delete= models.PROTECT)
 	
 	def __str__(self):
 		return self.matriz.nombre_matriz+', '+self.parametro.nombre_par+', '+self.tecnica.nombre_tec
 	
 class ParametroPrecio  (models.Model):
-	matriz = models.ForeignKey(Matriz)
-	parametro = models.ForeignKey(Parametro)
-	tecnica = models.ForeignKey(Tecnica)
+	matriz = models.ForeignKey(Matriz, on_delete= models.PROTECT)
+	parametro = models.ForeignKey(Parametro, on_delete= models.PROTECT)
+	tecnica = models.ForeignKey(Tecnica, on_delete= models.PROTECT)
 	precio_del_parametro = models.DecimalField(max_digits=8, decimal_places=2)
 	fecha_de_precio = models.DateField('Fecha del precio', default=date.today)
 	
@@ -148,21 +148,20 @@ class ParametroPrecio  (models.Model):
 	
 class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 	nombre = models.CharField( max_length=100)
-	matriz = models.ForeignKey(Matriz)
+	matriz = models.ForeignKey(Matriz, on_delete= models.PROTECT)
 	precio = models.DecimalField(max_digits=8, decimal_places=2)
 	fecha_precio = models.DateField('Fecha del precio')
 	def __str__(self):
 		return self.nombre
 
 class PerfilPrecio_Parametro (models.Model): # ex GrupoParametroPrecio_Parametro
-	perfilPrecio = models.ForeignKey(PerfilPrecio)
-	parametro = models.ForeignKey(Parametro)
-	tecnica = models.ForeignKey(Tecnica)
-	texto = models.CharField( max_length=100)	
-	
+	perfilPrecio = models.ForeignKey(PerfilPrecio, on_delete= models.PROTECT)
+	parametro = models.ForeignKey(Parametro, on_delete= models.PROTECT)
+	tecnica = models.ForeignKey(Tecnica, on_delete= models.PROTECT)	
+
 	#todo:agregar inferida de unidades y lct, que vienen de matriztecnicalct
 	
-class Item (models.Model):
+class Item (models.Model): #si se elimina el presupuesto. se elimina el Item, junto con sus subitems
 	presupuesto = models.ForeignKey(Presupuesto)
 	numero = models.IntegerField(default= 0)
 	descripcion = models.CharField(max_length= 100, blank='true')
@@ -182,7 +181,7 @@ class Subitem_perfil (models.Model): #relacion Item-PerfilPrecio
 	cantidad = models.IntegerField(default='0')
 
 class Campania (models.Model):
-	presupuesto = models.ForeignKey(Presupuesto)
+	presupuesto = models.ForeignKey(Presupuesto, on_delete= models.PROTECT)
 	numero = models.IntegerField(default= 0)
 	descripcion = models.CharField(max_length= 100)
 	cantidad = models.IntegerField(default= 0)
