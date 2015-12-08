@@ -1,10 +1,12 @@
 {% extends "menu.html" %}
 {% load staticfiles %}
 {% block content %}
-<h1>{{ presupuesto}}</h1>
+<h1>Presupuesto</h1>
 
-<p>Presupuesto: {{ presupuesto.cliente }}</p>
-
+<p>Cliente: {{ presupuesto.cliente }}</p>
+<p>Referencia: {{ presupuesto.referencia_clave }} {{ presupuesto.referencia }}</p>
+<p>Fecha de solicitud: {{ presupuesto.fecha_solicitud }}</p>
+<h2>Ítems</h2>
 <table class="table table-hover">
 <thead>
   <tr>
@@ -19,7 +21,7 @@
   {% for item in presupuesto.item_set.all %}
   <tr>
     <td><a href="{% url "presupuestos:presupuesto_detalle" presupuesto.id %}"><img src= "{% static "images/accion_item.png"%}" data-toggle="tooltip" data-placement="top" title="Parámetros y perfiles" alt= "Parámetros y perfiles"></a></td>		   
-	  <td>{{item.numero}}</td>
+	<td>{{item.numero}}</td>
     <td>{{item.descripcion}}</td>
     <td>{{item.matriz}}</td>
     <td>{{item.cantidadMuestra}}</td>
