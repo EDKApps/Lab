@@ -145,6 +145,8 @@ class ParametroPrecio  (models.Model):
 			return ''
 		else:
 			return mt.unidad
+	def __str__(self):
+		return str(self.parametro)+', '+self.tecnica
 	
 class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 	nombre = models.CharField( max_length=100)
@@ -173,12 +175,11 @@ class Item (models.Model): #si se elimina el presupuesto. se elimina el Item, ju
 class Subitem_parametro (models.Model): #relacion Item-ParametroPrecio
 	item = models.ForeignKey(Item)
 	itemparametro = models.ForeignKey(ParametroPrecio)
-	cantidad = models.IntegerField(default='0')
+
 
 class Subitem_perfil (models.Model): #relacion Item-PerfilPrecio
 	item = models.ForeignKey(Item)
 	itemperfil = models.ForeignKey(PerfilPrecio)
-	cantidad = models.IntegerField(default='0')
 
 class Campania (models.Model):
 	presupuesto = models.ForeignKey(Presupuesto, on_delete= models.PROTECT)
@@ -188,7 +189,7 @@ class Campania (models.Model):
 	unidad_medida = models.CharField(max_length= 100, blank='true')
 	valor_unitario = models.DecimalField(max_digits=8, decimal_places=2, default= 0)
 	valor_total = models.DecimalField(max_digits=8, decimal_places=2, null='true', blank='true', default=0)
-	descuento = models.DecimalField(max_digits=5, decimal_places=2, null='true', blank='true', default=0)
+	descuento = models.DecimalField('descuento (%)', max_digits=5, decimal_places=2, null='true', blank='true', default=0)
 	def __str__(self):
 		return self.descripcion
 	def save(self, *args, **kwargs):
