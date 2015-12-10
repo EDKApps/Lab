@@ -1,0 +1,41 @@
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block content %}
+<form method="post" action="">
+	
+    {{ ParametroPrecioFormSet.management_form }}
+	
+	<table class="table table-hover">
+	<thead>
+	  <tr>
+		<th></th>
+		<th>matriz</th>
+		<th>Parámetro</th>
+		<th>Técnica</th>
+		<th>precio</th>
+		<th>fecha del precio</th>
+
+
+
+	  </tr>
+	</thead>
+	<tbody>	  	
+    {% for form in ParametroPrecioFormSet%}
+		  <tr>
+          <td>
+			  {{ form.id }}
+			  {{ form.seleccionado}}
+			  {{ form.matriz}}
+		  </td>
+		  <td> {{ form.instance.matriz }}  </td>
+		  <td> {{ form.instance.parametro }}</td>
+		  <td> {{ form.instance.tecnica }}</td>
+		  <td> {{ form.instance.precio_del_parametro }}</td>
+		  <td> {{ form.instance.fecha_de_precio }}</td>
+		  </tr>		
+    {% endfor %}	
+	</tbody>
+	</table>
+    <input type="submit" value="Confirmar" class="submit" />	
+</form>
+{% endblock content %}

@@ -16,7 +16,7 @@ from .viewitem import ItemCrear, ItemBorrar, ItemDetalle, ItemListar, ItemModifi
 from .viewpresupuestoitem import PresupuestoItemModificar, PresupuestoItemDetalle
 from .viewpresupuestocampania import PresupuestoCampaniaModificar
 from .viewitemsubitem import ItemSubitemModificar
-
+from .viewpromptparametros import promptparametros
 
 urlpatterns = patterns('',
              
@@ -122,7 +122,9 @@ urlpatterns = patterns('',
     url(r'^itemsubitem/(?P<pk>\d+)/modificar/$', ItemSubitemModificar.as_view(), name='itemsubitem_modificar'),
                        
     #multiselección de parámetros
-    #url(r'^promtparametros/(?P<iditem>\d+)/$', views.add_page, name='category'),
+    #http://localhost:8000/presupuestos/promptparametros/1/
+    url(r'^promptparametros/(?P<iditem>\d+)/$', promptparametros, name='promptparametros'),
+                       
     #multiseleccion de perfiles
     
 )
