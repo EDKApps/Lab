@@ -29,8 +29,28 @@
 	<p><strong>Descuento:</strong> {{presupuesto.descuento}} %</p>
 	<hr/>
 	{% endfor %}
+	<table>
+		<thead>
+		<tr>
+			<td>Items</td>
+			<td>Parametros</td>
+			<td>Metodologia analitica</td>
+			<td>Costo unitario, Por muestra</td>
+		</tr>
+		</thead>
+		<tbody>
+		{% for subitem_parametro in item.subitem_parametro_set.all %}
+		<tr>
+			<td>{{subitem_parametro.itemparametro}}</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		{% endfor %}
+		</tbody>
+  </table>
   </tbody>
-	
   </table>
   <br />
 <table class="table table-hover">
