@@ -20,7 +20,7 @@
 <tbody>
   {% for item in presupuesto.item_set.all %}
   <tr>
-    <td><a href="{% url "presupuestos:presupuesto_detalle" presupuesto.id %}"><img src= "{% static "images/accion_item.png"%}" data-toggle="tooltip" data-placement="top" title="Parámetros y perfiles" alt= "Parámetros y perfiles"></a></td>		   
+    <td><a href="{% url "presupuestos:itemsubitem_modificar" item.id %}"><img src= "{% static "images/accion_item.png"%}" data-toggle="tooltip" data-placement="top" title="Parámetros y perfiles" alt= "Parámetros y perfiles"></a></td>		   
 	<td>{{item.numero}}</td>
     <td>{{item.descripcion}}</td>
     <td>{{item.matriz}}</td>

@@ -1,6 +1,7 @@
 {% extends "menu.html" %}
 {% load staticfiles %}
 {% block content %}
+<h2>Lista de precios - parámetros</h2>
 <form method="post" action="">
 	
     {{ ParametroPrecioFormSet.management_form }}
@@ -11,12 +12,12 @@
 		<th></th>
 		<th>matriz</th>
 		<th>Parámetro</th>
-		<th>Técnica</th>
+		<th>Grupo</th>
+        <th>Técnica</th>
+        <th>lcm</th>
+		<th>unidad</th>
 		<th>precio</th>
 		<th>fecha del precio</th>
-
-
-
 	  </tr>
 	</thead>
 	<tbody>	  	
@@ -28,7 +29,10 @@
 		  </td>
 		  <td> {{ form.instance.matriz }}  </td>
 		  <td> {{ form.instance.parametro }}</td>
+	      <td> {{ form.instance.parametro.familia }}</td>
 		  <td> {{ form.instance.tecnica }}</td>
+		  <td> {{ form.instance.lcm }}</td>
+          <td> {{ form.instance.uni }}</td>
 		  <td> {{ form.instance.precio_del_parametro }}</td>
 		  <td> {{ form.instance.fecha_de_precio }}</td>
 		  </tr>		
