@@ -83,4 +83,3 @@ class PresupuestoDetalleFull(DetailView):
     model = Presupuesto
     fields = presupuesto_fields_full
     template_name = 'presupuestos/presupuesto_detail_full.html'
-
