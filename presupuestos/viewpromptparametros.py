@@ -12,7 +12,6 @@ from .models import ParametroPrecio, Item, Subitem_parametro
 
 #Armo el formset
 class ParametroPrecio_Form(ModelForm): 
-	#success_url = reverse_lazy('presupuestos:presupuesto_listar') #prueba
 	class Meta:
 		model = ParametroPrecio
 		fields= ['seleccionado']		

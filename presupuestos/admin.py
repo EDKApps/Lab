@@ -13,6 +13,7 @@ from .models import ParametroPrecio
 from .models import PerfilPrecio
 from .models import PerfilPrecio_Parametro
 from .models import Campania
+from .models import Item
 
 admin.site.register(Cliente)
 admin.site.register(Presupuesto)
@@ -29,4 +30,5 @@ admin.site.register(ParametroPrecio)
 admin.site.register(PerfilPrecio)
 admin.site.register(PerfilPrecio_Parametro)
 admin.site.register(Campania)
+admin.site.register(Item)
 

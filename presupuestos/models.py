@@ -128,7 +128,7 @@ class ParametroPrecio  (models.Model):
 	tecnica = models.ForeignKey(Tecnica, on_delete= models.PROTECT)
 	precio_del_parametro = models.DecimalField(max_digits=8, decimal_places=2)
 	fecha_de_precio = models.DateField('Fecha del precio', default=date.today)
-	seleccionado = models.BooleanField()
+	seleccionado = models.BooleanField(default=False)
 	#def familia(self): todo: (Inferido) a partir del parametro retornar su familia
 		
 	def lcm(self):
