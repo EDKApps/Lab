@@ -181,7 +181,7 @@ class Subitem_perfil (models.Model): #relacion Item-PerfilPrecio
 	itemperfil = models.ForeignKey(PerfilPrecio)
 
 class Campania (models.Model):
-	presupuesto = models.ForeignKey(Presupuesto, on_delete= models.PROTECT)
+	presupuesto = models.ForeignKey(Presupuesto, on_delete= models.PROTECT, null=True)
 	numero = models.IntegerField(default= 0)
 	descripcion = models.CharField(max_length= 100)
 	cantidad = models.IntegerField(default= 0)
