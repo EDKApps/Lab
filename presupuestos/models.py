@@ -173,11 +173,11 @@ class Item (models.Model): #si se elimina el presupuesto. se elimina el Item, ju
 		return self.descripcion
 
 class Subitem_parametro (models.Model): #relacion Item-ParametroPrecio
-	item = models.ForeignKey(Item)
+	item = models.ForeignKey(Item, null=True)
 	itemparametro = models.ForeignKey(ParametroPrecio)
 
 class Subitem_perfil (models.Model): #relacion Item-PerfilPrecio
-	item = models.ForeignKey(Item)
+	item = models.ForeignKey(Item, null=True)
 	itemperfil = models.ForeignKey(PerfilPrecio)
 
 class Campania (models.Model):
