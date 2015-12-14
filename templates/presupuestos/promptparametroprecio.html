@@ -2,6 +2,12 @@
 {% load staticfiles %}
 {% block content %}
 <h2>Lista de precios - parámetros</h2>
+    <form method="get" action="/presupuestos/promptparametros/{{iditem}}/">
+    <p><label for="id_q">Filtro (Parametro o técnica ):</label>
+    <input type="text" name="q" id="id_q" value="{{ querysearch }}" />
+    <input type="submit" value="Buscar" /></p>
+    </form>	
+
 <form method="post" action="">
 	
     {{ ParametroPrecioFormSet.management_form }}
@@ -41,4 +47,19 @@
 	</table>
     <input type="submit" value="Confirmar" class="submit" />	
 </form>
+<div class="pagination">
+    <span class="step-links">
+        {% if objects.has_previous %}
+            <a href="?page={{ objects.previous_page_number }}">anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ objects.number }} of {{ objects.paginator.num_pages }}
+        </span>
+
+        {% if objects.has_next %}
+            <a href="?page={{ objects.next_page_number }}">siguiente</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock content %}
