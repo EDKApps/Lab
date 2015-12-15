@@ -4,12 +4,16 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.forms.extras.widgets import SelectDateWidget
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 from django.db.models import Q #para OR en consultas
+#mcorrea
+#from .models import Presupuesto, Item, Campania
+from .models import Presupuesto, Item, Campania, Subitem_perfil, PerfilPrecio_Parametro
 #En el form de alta excluyo la referencia (automática)
-presupuesto_fields_crear = ('cliente','referencia_clave', 'tipo', 'fecha_solicitud', 'fecha_vencimiento', 'fecha_envio', 'fecha_aprobacion', 'descripcion', 'estado', 'observacion')
-presupuesto_fields_modif = ('cliente','referencia_clave', 'referencia', 'tipo', 'fecha_solicitud', 'fecha_vencimiento', 'fecha_envio', 'fecha_aprobacion', 'descripcion', 'estado', 'observacion')
+presupuesto_fields_full = ('cliente','referencia_clave', 'referencia', 'tipo', 'fecha_solicitud', 'fecha_vencimiento', 'fecha_envio', 'fecha_aprobacion', 'descripcion', 'estado', 'observacion','item.numero')
 
+presupuesto_fields_crear = ('cliente','referencia_clave', 'tipo', 'fecha_solicitud', 'fecha_vencimiento', 'fecha_envio', 'fecha_aprobacion', 'descripcion', 'estado', 'observacion', 'descuento')
+presupuesto_fields_modif = ('cliente','referencia_clave', 'referencia', 'tipo', 'fecha_solicitud', 'fecha_vencimiento', 'fecha_envio', 'fecha_aprobacion', 'descripcion', 'estado', 'observacion', 'descuento')
 fecha_solicitud_anios = ('2015', '2016', '2017')
-from .models import Presupuesto
+#from .models import Presupuesto, Item, Campania
 
 #Presupuesto
 class PresupuestoListar(ListView):
@@ -75,3 +79,12 @@ class PresupuestoBorrar(DeleteView):
     model = Presupuesto
     success_url = reverse_lazy('presupuestos:presupuesto_listar')
     fields = presupuesto_fields_modif
+	
+
+class PresupuestoDetalleFull(DetailView):
+    #mcorrea
+    #model = Presupuesto
+    #model = Presupuesto, Item, Campania, Subitem_perfil, PerfilPrecio_Parametro
+    model = Presupuesto, Item
+    fields = presupuesto_fields_full
+    template_name = 'presupuestos/presupuesto_detail_full.html'

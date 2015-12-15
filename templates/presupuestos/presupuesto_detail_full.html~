@@ -58,7 +58,7 @@
 		<td>{{subitem_perfil.itemperfil.nombre}}</td>
 		
 		<!-- PERFIL_PARAMETRO -->
-		{% for perfilPrecio_Par in PerfilPrecio_Parametro %}
+		{% for perfilPrecio_Par in Unidades %}
 		<td>{{perfilPrecio_Par.parametro}}</td>
 		<td>{{perfilPrecio_Par}}</td>
 		{% empty %}
