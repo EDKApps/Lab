@@ -7,8 +7,11 @@
 
 from django.db import models
 from datetime import date
+from django.utils.encoding import python_2_unicode_compatible
+
 #from .APINumerador import sigNumero
 
+@python_2_unicode_compatible
 class Cliente (models.Model):
 	empresa = models.CharField(max_length=100)
 	contacto = models.CharField('Contacto (apellido, nombre)', max_length=200)
@@ -22,18 +25,20 @@ class Cliente (models.Model):
 	nota = models.CharField(max_length=200, blank='true')
 	def __str__(self):
 		return self.contacto+', '+self.empresa
-	
+
+@python_2_unicode_compatible
 class Tipo (models.Model):
 	nombre_tipo = models.CharField(max_length=100)
 	def __str__(self):
 		return self.nombre_tipo
-	
+
+@python_2_unicode_compatible
 class Estado (models.Model):
 	estado_actual = models.CharField(max_length=100)
 	def __str__(self):
 		return self.estado_actual
 	
-
+@python_2_unicode_compatible
 class Presupuesto (models.Model):
 	cliente = models.ForeignKey(Cliente, on_delete= models.PROTECT)
 	referencia_clave = models.CharField(max_length=100, blank='true',default='S-P')
@@ -58,6 +63,7 @@ class Presupuesto (models.Model):
 			
 		super(Presupuesto, self).save(*args, **kwargs) # Call the "real" save() method.
 
+@python_2_unicode_compatible
 class Numerador (models.Model):
 	nombre = models.CharField(max_length=30, blank='true',unique=True)
 	ultimo_valor = models.IntegerField(default=0)
@@ -82,23 +88,26 @@ def sigNumero(nombreNumerador):
 #        identifier=identifier, defaults={"name": name}
 #)
 
-
+@python_2_unicode_compatible
 class Matriz (models.Model):
 	nombre_matriz = models.CharField(max_length=100)
 	def __str__(self):
 		return self.nombre_matriz
-	
+
+@python_2_unicode_compatible
 class Familia (models.Model): # también llamada Grupo
 	nombre= models.CharField(max_length=100)
 	def __str__(self):
 		return self.nombre
 	
+@python_2_unicode_compatible	
 class Parametro (models.Model):
 	nombre_par = models.CharField('Parametro', max_length=100)
 	familia = models.ForeignKey(Familia, blank='true', null='true',on_delete= models.PROTECT )
 	def __str__(self):
 		return self.nombre_par
 	
+@python_2_unicode_compatible	
 class Tecnica (models.Model):
 	nombre_tec = models.CharField('Tecnica', max_length=100)
 	derivacion= models.CharField(max_length=100, blank='true')
@@ -106,12 +115,14 @@ class Tecnica (models.Model):
 	observacion = models.TextField(blank='true')
 	def __str__(self):
 		return self.nombre_tec
-	
+
+@python_2_unicode_compatible
 class Unidades (models.Model):
 	nombre_unidad = models.CharField('Unidades', max_length=100)
 	def __str__(self):
 		return self.nombre_unidad
 
+@python_2_unicode_compatible
 class MatrizTecnicaLct (models.Model):
 	matriz = models.ForeignKey(Matriz, on_delete= models.PROTECT)
 	parametro = models.ForeignKey(Parametro, on_delete= models.PROTECT)
@@ -121,7 +132,8 @@ class MatrizTecnicaLct (models.Model):
 	
 	def __str__(self):
 		return self.matriz.nombre_matriz+', '+self.parametro.nombre_par+', '+self.tecnica.nombre_tec
-	
+
+@python_2_unicode_compatible
 class ParametroPrecio  (models.Model):
 	matriz = models.ForeignKey(Matriz, on_delete= models.PROTECT)
 	parametro = models.ForeignKey(Parametro, on_delete= models.PROTECT)
@@ -146,8 +158,9 @@ class ParametroPrecio  (models.Model):
 		else:
 			return mt.unidad
 	def __str__(self):
-		return str(self.parametro)+', '+self.tecnica.nombre_tec
-	
+		return self.parametro.nombre_par+', '+self.tecnica.nombre_tec
+
+@python_2_unicode_compatible
 class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 	nombre = models.CharField( max_length=100)
 	matriz = models.ForeignKey(Matriz, on_delete= models.PROTECT)
@@ -156,13 +169,16 @@ class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 	def __str__(self):
 		return self.nombre
 
+@python_2_unicode_compatible
 class PerfilPrecio_Parametro (models.Model): # ex GrupoParametroPrecio_Parametro
 	perfilPrecio = models.ForeignKey(PerfilPrecio, on_delete= models.PROTECT)
 	parametro = models.ForeignKey(Parametro, on_delete= models.PROTECT)
 	tecnica = models.ForeignKey(Tecnica, on_delete= models.PROTECT)	
-
+	def __str__(self):
+		return self.parametro.nombre_par
 	#todo:agregar inferida de unidades y lct, que vienen de matriztecnicalct
-	
+
+@python_2_unicode_compatible
 class Item (models.Model): #si se elimina el presupuesto. se elimina el Item, junto con sus subitems
 	presupuesto = models.ForeignKey(Presupuesto)
 	numero = models.IntegerField(default= 0)
@@ -172,14 +188,22 @@ class Item (models.Model): #si se elimina el presupuesto. se elimina el Item, ju
 	def __str__(self):
 		return self.descripcion
 
+@python_2_unicode_compatible
 class Subitem_parametro (models.Model): #relacion Item-ParametroPrecio
 	item = models.ForeignKey(Item, null=True)
 	itemparametro = models.ForeignKey(ParametroPrecio)
+	
+	def __str__(self):
+		return self.itemparametro.parametro.nombre_par #lo agrego para cumplir con decorator python_2
 
+@python_2_unicode_compatible
 class Subitem_perfil (models.Model): #relacion Item-PerfilPrecio
 	item = models.ForeignKey(Item, null=True)
 	itemperfil = models.ForeignKey(PerfilPrecio)
-
+	def __str__(self):
+		return self.itemperfil.nombre #lo agrego para cumplir con decorator python_2
+	
+@python_2_unicode_compatible
 class Campania (models.Model):
 	presupuesto = models.ForeignKey(Presupuesto, on_delete= models.PROTECT, null=True)
 	numero = models.IntegerField(default= 0)
