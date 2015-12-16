@@ -5,7 +5,7 @@
 
 <table class="table table-hover">
   <thead>
-	<p>Cliente: {{presupuesto.cliente.empresa}}</p>
+    <p>Cliente: {{presupuesto.cliente.empresa}}</p>
     <p>Contacto: {{presupuesto.cliente}}</p>
     <p>Referencia clave: {{presupuesto.referencia_clave}}</p>
     <p>Referencia: {{presupuesto.referencia}}</p>
@@ -41,38 +41,57 @@
 	<!-- PARAMETROS -->
 	{% for subitem_parametro in item.subitem_parametro_set.all %}
 	<tr>
-		<td></td>
+		<td>--</td>
 		<td>{{subitem_parametro.itemparametro.parametro}}</td>
 		<td>{{subitem_parametro.itemparametro.tecnica}}</td>
 		<td>{{subitem_parametro.itemparametro.precio_del_parametro}}</td>
 		<td>{{subitem_parametro.itemparametro.fecha_de_precio}}</td>
 	</tr>
 	{% empty %}
+	<tr>
 	<td></td>
 	<td>No hay parametros registrados</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	</tr>
 	{% endfor %}
 	<!-- FIN PARAMETROS -->
 	<!-- PERFIL -->
 	{% for subitem_perfil in item.subitem_perfil_set.all %}
-	<tr>
+	  <tr>
 		<td>{{subitem_perfil.itemperfil.nombre}}</td>
-		
-		<!-- PERFIL_PARAMETRO -->
-		{% for perfilPrecio_Par in Unidades %}
-		<td>{{perfilPrecio_Par.parametro}}</td>
-		<td>{{perfilPrecio_Par}}</td>
-		{% empty %}
-		<td/>
-		<td/>
-		{% endfor %}
-		<!-- FIN PERFIL_PARAMETRO -->		
-
+		<td></td>
+		<td></td>
 		<td>{{subitem_perfil.itemperfil.precio}}</td>
 		<td>{{subitem_perfil.itemperfil.fecha_precio}}</td>
 	</tr>
+		<!-- PERFIL_PARAMETRO -->
+		{% for perfilPrecio_Par in subitem_perfil.itemperfil.perfilprecio_parametro_set.all %}
+		<tr>
+			<td></td>
+			<td>{{perfilPrecio_Par.parametro}}</td>
+			<td>{{perfilPrecio_Par.tecnica}}</td>
+			<td></td>
+			<td></td>
+		</tr>
+		{% empty %}
+		<tr>
+			<td/>
+			<td>No hay parametros registrados</td>
+			<td/>
+			<td/>
+			<td/>
+		</tr>
+		{% endfor %}
+		<!-- FIN PERFIL_PARAMETRO -->
 	{% empty %}
 	<tr>
-	<td>No hay perfil registrados</td>
+		<td>No hay perfil registrados</td>
+		<td/>
+		<td/>
+		<td/>
+		<td/>
 	</tr>
 	{% endfor %}
 	</tbody>
