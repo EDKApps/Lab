@@ -5,7 +5,7 @@
 
 <table class="table table-hover">
   <thead>
-	<p>Cliente: {{presupuesto.cliente.empresa}}</p>
+    <p>Cliente: {{presupuesto.cliente.empresa}}</p>
     <p>Contacto: {{presupuesto.cliente}}</p>
     <p>Referencia clave: {{presupuesto.referencia_clave}}</p>
     <p>Referencia: {{presupuesto.referencia}}</p>
@@ -58,11 +58,18 @@
 		<td>{{subitem_perfil.itemperfil.nombre}}</td>
 		
 		<!-- PERFIL_PARAMETRO -->
-		{% for perfilPrecio_Par in Unidades %}
+		{% for perfilPrecio_Par in itemperfil.PerfilPrecio_Parametro %}
+<!-- in subitem_perfil.PerfilPrecio_Parametro %} -->
+<!-- in itemperfil.subitem_perfil.PerfilPrecio_Parametro  %} -->
+<!-- in perfilPrecio.subitem_perfil.PerfilPrecio_Parametro -->
+<!-- -->
+<!-- -->
+aaaaaaaaaaaaaaaaaaaaaaaaaa
 		<td>{{perfilPrecio_Par.parametro}}</td>
 		<td>{{perfilPrecio_Par}}</td>
 		{% empty %}
 		<td/>
+		VACIO
 		<td/>
 		{% endfor %}
 		<!-- FIN PERFIL_PARAMETRO -->		
