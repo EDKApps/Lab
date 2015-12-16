@@ -54,21 +54,27 @@
 	<!-- FIN PARAMETROS -->
 	<!-- PERFIL -->
 	{% for subitem_perfil in item.subitem_perfil_set.all %}
-	<tr>
-		<td>{{subitem_perfil.itemperfil.nombre}}</td>
-		
+	  <tr>
+		  <td>{{subitem_perfil.itemperfil.nombre}}</td>
+      <td></td>
+      <td></td>
+		  <td>{{subitem_perfil.itemperfil.precio}}</td>
+		  <td>{{subitem_perfil.itemperfil.fecha_precio}}</td>
+    </tr>
 		<!-- PERFIL_PARAMETRO -->
-		{% for perfilPrecio_Par in PerfilPrecio_Parametro %}
+		{% for perfilPrecio_Par in subitem_perfil.itemperfil.perfilprecio_parametro_set.all %}
+    <tr>
 		<td>{{perfilPrecio_Par.parametro}}</td>
-		<td>{{perfilPrecio_Par}}</td>
+		<td>{{perfilPrecio_Par.tecnica}}</td>
+    </tr>
 		{% empty %}
+    <tr>
 		<td/>
+    <td>No hay parametros registrados</td>
 		<td/>
+    </tr>
 		{% endfor %}
 		<!-- FIN PERFIL_PARAMETRO -->		
-
-		<td>{{subitem_perfil.itemperfil.precio}}</td>
-		<td>{{subitem_perfil.itemperfil.fecha_precio}}</td>
 	</tr>
 	{% empty %}
 	<tr>
