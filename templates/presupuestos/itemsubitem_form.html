@@ -47,26 +47,19 @@
                 <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th></th>
                     <th>Grupo</th>
                     <th>Parámetro</th>
                     <th>Técnica</th>
                     <th>LC</th>
                     <th>Unidades</th>
                     <th>Precio</th>
-                    <th>Fecha de Precio</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>	     
                     
                 {% for form in subitem_parametro_form %}
                         <tr class="inline {{ subitem_parametro_form.prefix }}">                            
-                        <td>
-                        {{ form.id }}
-                        {% if form.instance.pk %}{{ form.DELETE }}{% endif %}
-                        {{ form.itemparametro.errors }}
-                        {{ form.itemparametro }}
-                        </td>
                         <td>
                         {{ form.instance.itemparametro.parametro.familia}}
                         </td>
@@ -83,10 +76,15 @@
                         {{ form.instance.itemparametro.uni }}
                         </td>
                         <td>
-                        {{ form.instance.itemparametro.precio_del_parametro }}
+			{{ form.precio}}
                         </td>
                         <td>
-                        {{ form.instance.itemparametro.fecha_de_precio }}
+                        {{ form.id }}
+                        {% if form.instance.pk %}{{ form.DELETE }}{% endif %}
+                        </td>
+                        <td>
+			{{ form.itemparametro.erros }}
+			{{ form.itemparametro }}
                         </td>
                         </tr>
                     <!--</div>-->
@@ -106,7 +104,6 @@
                     <th></th>
                     <th>Perfil</th>
                     <th>Precio</th>
-                    <th>Fecha de Precio</th>
                   </tr>
                 </thead>
                 <tbody>	     
@@ -123,10 +120,7 @@
                         {{ form.instance.itemperfil.nombre }}
                         </td>
                         <td>
-                        {{ form.instance.itemperfil.precio }}
-                        </td>
-                        <td>
-                        {{ form.instance.itemperfil.fecha_precio }}
+                        {{ form.precio }}
                         </td>
                         </tr>
                     <!--</div>-->

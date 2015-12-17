@@ -192,9 +192,15 @@ class Item (models.Model): #si se elimina el presupuesto. se elimina el Item, ju
 class Subitem_parametro (models.Model): #relacion Item-ParametroPrecio
 	item = models.ForeignKey(Item, null=True)
 	itemparametro = models.ForeignKey(ParametroPrecio)
-	
+	precio = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 	def __str__(self):
 		return self.itemparametro.parametro.nombre_par #lo agrego para cumplir con decorator python_2
+
+	def save(self, *args, **kwargs):
+		#completa precio
+		self.precio = self.itemparametro.precio_del_parametro
+		# Call the "real" save() method.
+		super(Subitem_parametro, self).save(*args, **kwargs)
 
 @python_2_unicode_compatible
 class Subitem_perfil (models.Model): #relacion Item-PerfilPrecio
@@ -223,4 +229,4 @@ class Campania (models.Model):
 		self.valor_total_con_descuento = self.valor_unitario * self.cantidad * (100-self.descuento)/100
 			
 		# Call the "real" save() method.
-		super(Campania, self).save(*args, **kwargs) 
+		super(Campania, self).save(*args, **kwargs)

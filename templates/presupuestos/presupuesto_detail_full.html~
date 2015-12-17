@@ -34,7 +34,7 @@
 			<td>Perfil</td>
 			<td>Parametro</td>
 			<td>Metodologia analitica</td>
-			<td>Costo unitario, Por muestra</td>			<td>Fecha de Precio</td>
+			<td>Costo unitario, Por muestra</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -44,8 +44,7 @@
 		<td>--</td>
 		<td>{{subitem_parametro.itemparametro.parametro}}</td>
 		<td>{{subitem_parametro.itemparametro.tecnica}}</td>
-		<td>{{subitem_parametro.itemparametro.precio_del_parametro}}</td>
-		<td>{{subitem_parametro.itemparametro.fecha_de_precio}}</td>
+		<td>{{subitem_parametro.precio}}</td>
 	</tr>
 	{% empty %}
 	<tr>
@@ -72,7 +71,7 @@
 			<td></td>
 			<td>{{perfilPrecio_Par.parametro}}</td>
 			<td>{{perfilPrecio_Par.tecnica}}</td>
-			<td></td>
+			<td>--</td>
 			<td></td>
 		</tr>
 		{% empty %}
