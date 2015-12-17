@@ -50,7 +50,8 @@
                     <th>Unidad de medida</th>
                     <th>Valor Unit.</th>
                     <th>Descuento (%)</th>
-                    <th>Total</th>
+                    <th>Total sin Descuento</th>
+                    <th>Total con Descuento</th>
                   </tr>
                 </thead>
                 <tbody>	     
@@ -60,8 +61,8 @@
                         <tr class="inline {{ campania_form.prefix }}">
                            
                         <td>
-                            {{ form.id }}
-						{% if form.instance.pk %}{{ form.DELETE }}{% endif %}
+                        {{ form.id }}
+                        {% if form.instance.pk %}{{ form.DELETE }}{% endif %}
                         {{ form.numero.errors }}
                         {{ form.numero }}
                         </td>
@@ -87,7 +88,11 @@
                         </td>
                         <td>
                         {{ form.valor_total.errors }}
-                        {{ form.valor_total }} 
+                        {{ form.valor_total_sin_descuento }} 
+                        </td>
+                        <td>
+                        {{ form.valor_total.errors }}
+                        {{ form.valor_total_con_descuento }} 
                         </td>
                        <tr>
                     <!--</div>-->
