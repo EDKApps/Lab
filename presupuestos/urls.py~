@@ -1,7 +1,7 @@
  # -- coding: utf-8 --
 from django.conf.urls import patterns, include, url
 from .viewcliente import labinicio, ClienteCrear, ClienteBorrar, ClienteDetalle, ClienteListar, ClienteModificar
-from .viewpresupuesto import PresupuestoCrear, PresupuestoBorrar, PresupuestoDetalle, PresupuestoListar, PresupuestoModificar
+from .viewpresupuesto import PresupuestoCrear, PresupuestoBorrar, PresupuestoDetalle, PresupuestoListar, PresupuestoModificar, PresupuestoDetalleFull
 from .viewmuestra import MuestraListar
 from .viewordendetrabajo import OrdenDeTrabajoListar
 from .viewmatriz import MatrizCrear, MatrizBorrar, MatrizDetalle, MatrizListar, MatrizModificar
@@ -14,6 +14,11 @@ from .viewparametroprecio import ParametroPrecioCrear, ParametroPrecioBorrar, Pa
 from .viewperfilprecio import PerfilPrecioCrear, PerfilPrecioBorrar, PerfilPrecioDetalle, PerfilPrecioConfirmaAlta, PerfilPrecioListar, PerfilPrecioModificar
 from .viewitem import ItemCrear, ItemBorrar, ItemDetalle, ItemListar, ItemModificar
 from .viewpresupuestoitem import PresupuestoItemModificar, PresupuestoItemDetalle
+from .viewpresupuestocampania import PresupuestoCampaniaModificar
+from .viewitemsubitem import ItemSubitemModificar
+from .viewpromptparametros import promptparametros
+from .viewpromptperfiles import promptperfiles
+
 urlpatterns = patterns('',
              
     #Base
@@ -31,6 +36,7 @@ urlpatterns = patterns('',
     url(r'^presupuestos/(?P<pk>\d+)/$', PresupuestoDetalle.as_view(), name='presupuesto_detalle'),
     url(r'^presupuestos/(?P<pk>\d+)/modificar/$', PresupuestoModificar.as_view(), name='presupuesto_modificar'),
     url(r'^presupuestos/(?P<pk>\d+)/borrar/$', PresupuestoBorrar.as_view(), name='presupuesto_borrar'),
+	url(r'^presupuestosfull/(?P<pk>\d+)/$', PresupuestoDetalleFull.as_view(), name='presupuesto_detalle_full'),
 					   
     #Ordenes de trabajo
     url(r'^ordenesdetrabajo/$', OrdenDeTrabajoListar, name='ordendetrabajo_listar'), #pasar a .as_view()
@@ -112,4 +118,15 @@ urlpatterns = patterns('',
     #relacion presupuesto-campania
     #url(r'^presupuestoitem/(?P<pk>\d+)/$', PresupuestoItemDetalle.as_view(), name='presupuestoitem_detalle'),
     url(r'^presupuestocampania/(?P<pk>\d+)/modificar/$', PresupuestoCampaniaModificar.as_view(), name='presupuestocampania_modificar'),
+    
+    #relacion item-subitem (parámetro y perfil)
+    url(r'^itemsubitem/(?P<pk>\d+)/modificar/$', ItemSubitemModificar.as_view(), name='itemsubitem_modificar'),
+                       
+    #multiselección de parámetros
+    #http://localhost:8000/presupuestos/promptparametros/1/
+    url(r'^promptparametros/(?P<iditem>\d+)/$', promptparametros, name='promptparametros'),
+                       
+    #multiseleccion de perfiles
+    url(r'^promptperfiles/(?P<iditem>\d+)/$', promptperfiles, name='promptperfiles'),
+    
 )

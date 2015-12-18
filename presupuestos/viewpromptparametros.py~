@@ -8,14 +8,14 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.template.context_processors import csrf
 from django.views.decorators.csrf import csrf_protect
-from .models import ParametroPrecio, Item, Subitem_parametro
+from .models import PerfilPrecio, Item, Subitem_perfil
 from django.db.models import Q #para OR en consultas
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 #Armo el formset
-class ParametroPrecio_Form(ModelForm): 
+class PerfilPrecio_Form(ModelForm): 
 	class Meta:
-		model = ParametroPrecio
+		model = PerfilPrecio
 		fields= ['seleccionado']		
 								 
 def promptparametros(request, iditem):

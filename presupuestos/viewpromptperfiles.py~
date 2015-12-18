@@ -1,4 +1,4 @@
-# # -- coding: utf-8 --
+ # -- coding: utf-8 --
 from django.forms import ModelForm
 from django import forms
 from django.forms import modelformset_factory
@@ -8,32 +8,32 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.template.context_processors import csrf
 from django.views.decorators.csrf import csrf_protect
-from .models import ParametroPrecio, Item, Subitem_parametro
+from .models import PerfilPrecio, Item, Subitem_perfil
 from django.db.models import Q #para OR en consultas
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 #Armo el formset
-class ParametroPrecio_Form(ModelForm): 
+class PerfilPrecio_Form(ModelForm): 
 	class Meta:
-		model = ParametroPrecio
+		model = PerfilPrecio
 		fields= ['seleccionado']		
 								 
-def promptparametros(request, iditem):
-    ParametroPrecioFormSet = modelformset_factory(ParametroPrecio, form = ParametroPrecio_Form, extra= 0)
-    item = Item.objects.get(id=iditem) #item al que agregar los parámetros
+def promptperfiles(request, iditem):
+    PerfilPrecioFormSet = modelformset_factory(PerfilPrecio, form = PerfilPrecio_Form, extra= 0)
+    item = Item.objects.get(id=iditem) #item al que agregar los perfiles
     if request.method == 'POST':
-        formset = ParametroPrecioFormSet(request.POST, request.FILES)
+        formset = PerfilPrecioFormSet(request.POST, request.FILES)
         if formset.is_valid():
             
 	        
             for form in formset: #recorro los formularios
-                if form.cleaned_data['seleccionado']: #Si el parámetro está selecciondo lo agrego al ítem
-                    unparametroprecio = form.instance #la instancia relacionada, como figura en la BD
-                    subitem_parametro = Subitem_parametro.objects.create(
+                if form.cleaned_data['seleccionado']: #Si el perfil está selecciondo lo agrego al ítem
+                    unperfilprecio = form.instance #la instancia relacionada, como figura en la BD
+                    subitem_perfil = Subitem_perfil.objects.create(
                         item = item,
-                        itemparametro= unparametroprecio
+                        itemperfil= unperfilprecio
                     )
-                    subitem_parametro.save()
+                    subitem_perfil.save()
             #volver al ítem
             #return   
             return HttpResponseRedirect( reverse('presupuestos:itemsubitem_modificar', kwargs={'pk': iditem,}) )
@@ -43,13 +43,11 @@ def promptparametros(request, iditem):
         querysearch = request.GET.get('q')
         if querysearch is None:
 			querysearch = '' #si es nulo le asigno la cadena vacia
-			queryset=ParametroPrecio.objects.filter(matriz = item.matriz)
+			queryset=PerfilPrecio.objects.filter(matriz = item.matriz)
         else:
-            queryset=ParametroPrecio.objects.filter(Q( matriz = item.matriz, parametro__nombre_par__icontains=querysearch)| 
-                                                    Q( matriz = item.matriz, tecnica__nombre_tec__icontains=querysearch)
-                                                   )
+            queryset=PerfilPrecio.objects.filter(Q( matriz = item.matriz, nombre__icontains=querysearch)                                                  )
 			
-        paginator = Paginator(queryset, 1) #10 formularios por página
+        paginator = Paginator(queryset, 10) #10 formularios por página
         page = request.GET.get('page')
         try:
             objects =paginator.page(page)
@@ -59,10 +57,9 @@ def promptparametros(request, iditem):
             objects = paginator.page(paginator.num_pages)
         page_query = queryset.filter(id__in=[object.id for object in objects])
         	
-        formset = ParametroPrecioFormSet(queryset=page_query) 
-        contexto = {"ParametroPrecioFormSet": formset, "iditem":iditem, "querysearch":querysearch,"objects": objects}
-        #contexto['formset'] = {"ParametroPrecioFormSet": formset}
-    return render_to_response("presupuestos/promptparametroprecio.html", 
+        formset = PerfilPrecioFormSet(queryset=page_query) 
+        contexto = {"PerfilPrecioFormSet": formset, "iditem":iditem, "querysearch":querysearch,"objects": objects}
+    return render_to_response("presupuestos/promptperfilprecio.html", 
                               contexto
                              )
 	

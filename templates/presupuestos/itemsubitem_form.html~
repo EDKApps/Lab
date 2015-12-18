@@ -83,7 +83,7 @@
                         {% if form.instance.pk %}{{ form.DELETE }}{% endif %}
                         </td>
                         <td>
-			{{ form.itemparametro.erros}}
+			{{ form.itemparametro.erros }}
 			{{ form.itemparametro }}
                         </td>
                         </tr>

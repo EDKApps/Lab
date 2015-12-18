@@ -166,6 +166,7 @@ class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 	matriz = models.ForeignKey(Matriz, on_delete= models.PROTECT)
 	precio = models.DecimalField(max_digits=8, decimal_places=2)
 	fecha_precio = models.DateField('Fecha del precio')
+	seleccionado = models.BooleanField(default=False)
 	def __str__(self):
 		return self.nombre
 

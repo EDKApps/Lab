@@ -166,6 +166,7 @@ class PerfilPrecio (models.Model): # ex GrupoParametroPrecio
 	matriz = models.ForeignKey(Matriz, on_delete= models.PROTECT)
 	precio = models.DecimalField(max_digits=8, decimal_places=2)
 	fecha_precio = models.DateField('Fecha del precio')
+	seleccionado = models.BooleanField(default=False)
 	def __str__(self):
 		return self.nombre
 
@@ -197,9 +198,11 @@ class Item (models.Model): #si se elimina el presupuesto. se elimina el Item, ju
 		lista_subitem_parametros = Subitem_parametro.objects.filter(item = self)	
 		for subitem_parametro in lista_subitem_parametros:
 			total = total + subitem_parametro.precio
-		#mt = MatrizTecnicaLct.objects.get(matriz=self.matriz, parametro=self.parametro, tecnica=self.tecnica)
 		
 		#Recorre los perfiles y suma el precio
+		lista_subitem_perfiles = Subitem_perfil.objects.filter(item = self)	
+		for subitem_perfil in lista_subitem_perfiles:
+			total = total + subitem_perfil.precio
 		
 		self.total_sin_descuento = total * self.cantidadMuestra	
 		self.total_con_descuento = self.total_sin_descuento * (100-self.descuento)/100

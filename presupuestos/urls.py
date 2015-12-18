@@ -17,6 +17,7 @@ from .viewpresupuestoitem import PresupuestoItemModificar, PresupuestoItemDetall
 from .viewpresupuestocampania import PresupuestoCampaniaModificar
 from .viewitemsubitem import ItemSubitemModificar
 from .viewpromptparametros import promptparametros
+from .viewpromptperfiles import promptperfiles
 
 urlpatterns = patterns('',
              
@@ -126,5 +127,6 @@ urlpatterns = patterns('',
     url(r'^promptparametros/(?P<iditem>\d+)/$', promptparametros, name='promptparametros'),
                        
     #multiseleccion de perfiles
+    url(r'^promptperfiles/(?P<iditem>\d+)/$', promptperfiles, name='promptperfiles'),
     
 )
