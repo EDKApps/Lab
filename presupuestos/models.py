@@ -185,8 +185,29 @@ class Item (models.Model): #si se elimina el presupuesto. se elimina el Item, ju
 	descripcion = models.CharField(max_length= 100, blank='true')
 	matriz = models.ForeignKey(Matriz)
 	cantidadMuestra = models.IntegerField(default= 0)
+	descuento = models.DecimalField('descuento (%)', max_digits=5, decimal_places=2, default=0)
+	total_sin_descuento = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+	total_con_descuento = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 	def __str__(self):
 		return self.descripcion
+	def save(self, *args, **kwargs):
+		#completa total
+		total = 0
+		#Recorre los parametros y suma el precio
+		lista_subitem_parametros = Subitem_parametro.objects.filter(item = self)	
+		for subitem_parametro in lista_subitem_parametros:
+			total = total + subitem_parametro.precio
+		
+		#Recorre los perfiles y suma el precio
+		lista_subitem_perfiles = Subitem_perfil.objects.filter(item = self)	
+		for subitem_perfil in lista_subitem_perfiles:
+			total = total + subitem_perfil.precio
+		
+		self.total_sin_descuento = total * self.cantidadMuestra	
+		self.total_con_descuento = self.total_sin_descuento * (100-self.descuento)/100
+			
+		# Call the "real" save() method.
+		super(Item, self).save(*args, **kwargs)
 
 @python_2_unicode_compatible
 class Subitem_parametro (models.Model): #relacion Item-ParametroPrecio
