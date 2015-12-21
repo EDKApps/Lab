@@ -55,7 +55,28 @@ class Presupuesto (models.Model):
 
 	def __str__(self):
 		return self.referencia
-	
+
+	def total_sin_descuento(self):
+		total = 0
+		#Recorre los item de analis y suma el precio
+		lista_items = Item.objects.filter(presupuesto = self)
+		for item in lista_items:
+			total = total + item.total_con_descuento
+		
+		#Recorre los item de muestreo-campania y suma el precio
+		lista_items = Campania.objects.filter(presupuesto = self)
+		for item in lista_items:
+			total = total + item.valor_total_con_descuento
+		total = '{:,}'.format(total)
+		return total
+
+	def total_con_descuento(self):
+		total_sin = self.total_sin_descuento()
+		total = total_sin * (100-self.descuento) /100
+		total = round (total, 2)
+		total = '{:,}'.format(total)
+		return total
+
 	def save(self, *args, **kwargs):
 		#si es insert (id= 0), asignar referencia autoincremental	
 		if self.id is None:
@@ -191,6 +212,11 @@ class Item (models.Model): #si se elimina el presupuesto. se elimina el Item, ju
 	total_con_descuento = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 	def __str__(self):
 		return self.descripcion
+
+	def costo_unitario(self):
+		costo_unitario = self.total_sin_descuento / self.cantidadMuestra
+		return costo_unitario
+
 	def save(self, *args, **kwargs):
 		#completa total
 		total = 0

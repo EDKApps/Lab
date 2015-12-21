@@ -26,8 +26,12 @@
 	<p><strong>Matriz:</strong> {{item.matriz}} </p>
 	<p><strong>Descripcion:</strong> {{item.descripcion}}</p>
 	<p><strong>Cantidad de muestras:</strong> {{item.cantidadMuestra}}</p>
-	<p><strong>Descuento:</strong> {{presupuesto.descuento}} %</p>
-	
+	<p><strong>Costo Unitario:</strong>{{item.costo_unitario}}</p>
+	<p><strong>Descuento:</strong> {{item.descuento}} %</p>
+	<p><strong>Total sin descuento:</strong> {{item.total_sin_descuento}}</p>	
+	<p><strong>Total con descuento:</strong> {{item.total_con_descuento}}</p>
+
+
 	<table class="table table-hover">
 	<thead>
 		<tr>
@@ -52,7 +56,6 @@
 	<td>No hay parametros registrados</td>
 	<td></td>
 	<td></td>
-	<td></td>
 	</tr>
 	{% endfor %}
 	<!-- FIN PARAMETROS -->
@@ -62,8 +65,7 @@
 		<td>{{subitem_perfil.itemperfil.nombre}}</td>
 		<td></td>
 		<td></td>
-		<td>{{subitem_perfil.itemperfil.precio}}</td>
-		<td>{{subitem_perfil.itemperfil.fecha_precio}}</td>
+		<td>{{subitem_perfil.precio}}</td>
 	</tr>
 		<!-- PERFIL_PARAMETRO -->
 		{% for perfilPrecio_Par in subitem_perfil.itemperfil.perfilprecio_parametro_set.all %}
@@ -80,14 +82,12 @@
 			<td>No hay parametros registrados</td>
 			<td/>
 			<td/>
-			<td/>
 		</tr>
 		{% endfor %}
 		<!-- FIN PERFIL_PARAMETRO -->
 	{% empty %}
 	<tr>
 		<td>No hay perfil registrados</td>
-		<td/>
 		<td/>
 		<td/>
 		<td/>
@@ -122,7 +122,7 @@
 	<td>{{campania.unidad_medida}}</td>
 	<td>{{campania.valor_unitario}}</td>
 	<td>{{campania.descuento}}%</td>
-	<td>{{campania.valor_total}}</td>
+	<td>{{campania.valor_total_con_descuento}}</td>
   </tr>
   {% endfor %}
   </tbody>
@@ -135,13 +135,9 @@
   <p><strong>Presupuesto numero: </strong>{{presupuesto.referencia}}</p> 
   <p><strong>Total: </strong></p>
   <p><strong>Descuento: </strong>{{presupuesto.descuento}}%</p> 
-  <p><strong>Total con descuento: </strong></p>
+  <p><strong>Total sin descuento: </strong>{{presupuesto.total_sin_descuento}}</p>
+  <p><strong>Total con descuento: </strong>{{total_con_descuento}}</p>
   <hr/>
-
-  <h2>Condiciones generales y notas tecnicas</h2>
-  <br/>
-  <p><strong>Condiciones comerciales</strong></p>
-  <p><strong>Aclaraciones tecnicas</strong></p>
 
 <a href="{% url "presupuestos:presupuesto_listar"  %}">Presupuestos</a>
 {% endblock content %}

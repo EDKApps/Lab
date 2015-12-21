@@ -126,7 +126,8 @@
                     <!--</div>-->
                 {% endfor %}
                 </tbody>
-                </table>    
+                </table>
+            <h4><a href="{% url "presupuestos:promptperfiles" item.id %}">Agregar perfiles</a></h4>    
             </fieldset>
 
             

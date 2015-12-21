@@ -12,6 +12,7 @@ class Subitem_parametro_Form(ModelForm):
 	class Meta:
 		model = Subitem_parametro
 		fields= '__all__'
+		extra =0
 
 	def save(self, commit=True):
 		instance = super(Subitem_parametro_Form, self).save(commit=False)

@@ -11,6 +11,7 @@ presupuesto_fields = '__all__'
 
 from .formitemsubitem import ItemForm, Subitem_parametroFormSet, Subitem_perfilFormSet
 from .models import Item, Subitem_parametro, Subitem_perfil
+from django.forms import formset_factory
     
 class ItemSubitemModificar(UpdateView):
     template_name = 'presupuestos/itemsubitem_form.html'
@@ -31,6 +32,7 @@ class ItemSubitemModificar(UpdateView):
         form_class = self.get_form_class()
         form = self.get_form(form_class)        
         #render form 
+	Subitem_parametroFormSet = formset_factory(Subitem_parametro, extra=0)
         subitem_parametro_form = Subitem_parametroFormSet(instance = self.object)
         subitem_perfil_form    = Subitem_perfilFormSet(instance = self.object)
         
